@@ -38,8 +38,8 @@ Description: Sdwdate Monitor and User Interface Plugin
  bars or success notifications will shown. Only failures will be notified then.
  .
  In other words:
- - sdwdate startup mode: show progress bar if necessary, show failure or
+  - sdwdate startup mode: show progress bar if necessary, show failure or
  success messages.
- - sdwdate daemon mode: don't show progress bar or success messages, show
+  - sdwdate daemon mode: don't show progress bar or success messages, show
  failure messages
- - sdwdate manual mode: show progress bar, show failure or success messages.
+  - sdwdate manual mode: show progress bar, show failure or success messages.
