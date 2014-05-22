@@ -1,0 +1,87 @@
+#!/bin/bash
+
+## This file is part of Whonix.
+## Copyright (C) 2012 - 2014 Patrick Schleizer <adrelanos@riseup.net>
+## See the file COPYING for copying conditions.
+
+#set -x
+set -o pipefail
+
+ICON="/usr/share/icons/anon-icon-pack/timesync.ico"
+
+SCRIPTNAME="$(basename $0)"
+IDENTIFIER="timesync"
+
+tmp="$(mktemp)"
+progressbaridx="${tmp##*.}"
+progressbaridx_main="$progressbaridx"
+
+source /usr/lib/msgcollector/error_handler
+trap "error_handler" ERR
+
+for i in /usr/lib/timesync/*; do
+   if [ -f "$i" ]; then
+      ## If the last character is a ~, ignore that file,
+      ## because it was created by some editor,
+      ## which creates backup files.
+      if [ "${i: -1}" = "~" ]; then
+         continue
+      fi
+      ## Skipping files such as .dpkg-old and .dpkg-dist.
+      if ( echo "$i" | grep -q ".dpkg-" ); then
+         true "skip $i"
+         continue
+      fi
+      source "$i"
+   fi
+done
+
+timesync_main() {
+   trap "error_handler" ERR
+
+   parse_cmd ${1+"$@"}
+   preparation
+
+   $output ${output_opts[@]} --forget
+   ## Sleep to prevent a race condition.
+   sleep 2 &
+   wait "$!"
+
+   local MSG="Running Secure Network Time Synchronization (sdwdate)...
+This will happen in background and if internet connectivity is functional it will take approximately 60 seconds.
+
+If you like to watch the log, open a terminal and run:
+    tail -f /var/log/sdwdate.log
+
+For better security and anonymity, please do not use the internet until timesync succeeded."
+   $output ${output_opts[@]} --progressbaridx "$progressbaridx" --progressbarx --titlex "$TITLE" --message "$MSG" --done
+
+   if [ -d /usr/share/whonix ]; then
+      local MSG="Whonix is produced independently of, with no guarantee from, The Tor Project. Whonix is experimental software. Do not rely on it for strong anonymity. https://www.whonix.org"
+      $output ${output_opts[@]} --messagex --typex "info" --titlex "$TITLE" --message "$MSG"
+      $output ${output_opts[@]} --messagecli --typecli "info" --titlecli "$TITLE" --message "$MSG"
+   fi
+
+   if [ -d /usr/share/whonix ]; then
+      source /usr/lib/anon-shared-helper-scripts/tor_enabled_check
+      check_tor_enabled_do ## /usr/lib/anon-shared-helper-scripts/tor_enabled_check
+   fi
+
+   check_bootclockrandomization ## /usr/lib/timesync/check_clock
+
+   ## Time Sanity Check before sdwdate was executed.
+   ## timesanitycheck was started at boot by /etc/init.d/timesanitycheck.
+   check_timesanitycheck ## /usr/lib/timesync/check_clock
+
+   run_sdwdate ## /usr/lib/timesync/check_sdwdate
+
+   run_timesanitycheck ## /usr/lib/timesync/check_clock
+
+   ## Time Sanity Check after sdwdate was executed.
+   ## check_sdwdate also does timesanitycheck.
+   check_sdwdate ## /usr/lib/timesync/check_sdwdate
+
+   cleanup ## cleanup
+}
+
+timesync_main ${1+"$@"}

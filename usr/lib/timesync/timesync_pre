@@ -1,0 +1,108 @@
+#!/bin/bash
+
+## This file is part of Whonix.
+## Copyright (C) 2012 - 2014 Patrick Schleizer <adrelanos@riseup.net>
+## See the file COPYING for copying conditions.
+
+#set -x
+set -o pipefail
+
+ICON="/usr/share/icons/anon-icon-pack/timesync.ico"
+
+SCRIPTNAME="$(basename $0)"
+IDENTIFIER="timesync"
+
+tmp="$(mktemp)"
+progressbaridx="${tmp##*.}"
+progressbaridx_main="$progressbaridx"
+
+source /usr/lib/msgcollector/error_handler
+trap "error_handler" ERR
+
+source /usr/lib/anon-shared-helper-scripts/tor_enabled_check
+
+for i in /usr/lib/timesync/*; do
+   if [ -f "$i" ]; then
+      ## If the last character is a ~, ignore that file,
+      ## because it was created by some editor,
+      ## which creates backup files.
+      if [ "${i: -1}" = "~" ]; then
+         continue
+      fi
+      ## Skipping files such as .dpkg-old and .dpkg-dist.
+      if ( echo "$i" | grep -q ".dpkg-" ); then
+         true "skip $i"
+         continue
+      fi
+      source "$i"
+   fi
+done
+
+timesync_pre_main() {
+   trap "error_handler" ERR
+
+   preparation
+   parse_cmd "${1+"$@"}"
+
+   $output ${output_opts[@]} --forget
+   ## Sleep to prevent a race condition.
+   sleep 2 &
+   wait "$!"
+
+   if [ -d /usr/share/whonix ]; then
+      source /usr/lib/anon-shared-helper-scripts/tor_enabled_check
+      ## returns: TOR_ENABLED
+      check_tor_enabled_do ## /usr/lib/anon-shared-helper-scripts/tor_enabled_check
+      if [ "$TOR_ENABLED" = "0" ]; then
+         true "TOR_ENABLED is 0. Whonixsetup has not been run yet. Exit 0, to prevent showing a progress bar before whonixsetup."
+         exit 0
+      fi
+   fi
+
+   ## The SDW_MODE variable gets set by /usr/bin/sdwdate.
+   ## sdwdate is configured in /etc/sdwdate.d/31_timesync_plugin to run this
+   ## script with the --mode $SDW_MODE parameter. The
+   ## parse_cmd script parses --mode
+   ## and sets the MODE variable.
+   ##
+   ## This will result in only showing a timesync progress bar (in X) and
+   ## wait message (in CLI) after boot. It won't unnecessarily annoy the user
+   ## with these messages in subsequent runs after boot. This is because, after
+   ## boot, when the clock could still be wrong, it's important not to use the
+   ## internet. But subsequent runs aren't that important, should the run fail,
+   ## the user will be informed about the failure. In case it succeeded, there
+   ## is nothing important to tell. (Interested ones could watch the logs.)
+   if [ "$MODE" = "startup" ]; then
+      ## Do not use < > inside zenity progress messages, zenity will mess that up.
+      local MSG="Running Secure Network Time Synchronization (sdwdate)...
+This will happen in background and if internet connectivity is functional it will take approximately 60 seconds.
+
+If you like to watch the log, open a terminal and run:
+    tail -f /var/log/sdwdate.log
+
+For better security and anonymity, please do not use the internet until timesync succeeded."
+      $output ${output_opts[@]} --progressbaridx "$progressbaridx" --progressbarx --titlex "$TITLE" --message "$MSG" --done
+
+      local MSG="Running Secure Network Time Synchronization (sdwdate)...
+This will happen in background and if internet connectivity is functional it will take approximately 60 seconds.
+
+If you like to watch the log, open a terminal and run:
+    tail -f /var/log/sdwdate.log
+
+For better security and anonymity, please do not use the internet until timesync succeeded.
+Please feel free to press <enter> to return back to your normal prompt."
+      $output ${output_opts[@]} --waitmessagecli --typecli "info" --titlecli "$TITLE" --message "$MSG" --done
+   else
+      true "MODE: $MODE"
+   fi
+
+   check_bootclockrandomization ## check_clock
+
+   check_timesanitycheck ## check_clock
+
+   ## Not using cleanup. timesync_post_failure, timesync_post_success or timesync_post_error
+   ## will keep care of that.
+   #cleanup
+}
+
+timesync_pre_main "${1+"$@"}"

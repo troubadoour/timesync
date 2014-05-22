@@ -1,0 +1,54 @@
+#!/bin/bash
+
+## This file is part of Whonix.
+## Copyright (C) 2012 - 2014 Patrick Schleizer <adrelanos@riseup.net>
+## See the file COPYING for copying conditions.
+
+#set -x
+set -o pipefail
+
+ICON="/usr/share/icons/anon-icon-pack/timesync.ico"
+
+SCRIPTNAME="$(basename $0)"
+IDENTIFIER="timesync"
+
+tmp="$(mktemp)"
+progressbaridx="${tmp##*.}"
+progressbaridx_main="$progressbaridx"
+
+source /usr/lib/msgcollector/error_handler
+trap "error_handler" ERR
+
+for i in /usr/lib/timesync/*; do
+   if [ -f "$i" ]; then
+      ## If the last character is a ~, ignore that file,
+      ## because it was created by some editor,
+      ## which creates backup files.
+      if [ "${i: -1}" = "~" ]; then
+         continue
+      fi
+      ## Skipping files such as .dpkg-old and .dpkg-dist.
+      if ( echo "$i" | grep -q ".dpkg-" ); then
+         true "skip $i"
+         continue
+      fi
+      source "$i"
+   fi
+done
+
+timesync_post_main() {
+   trap "error_handler" ERR
+
+   parse_cmd ${1+"$@"}
+   preparation
+
+   $output ${output_opts[@]} --forgetwaitcli
+
+   run_timesanitycheck
+
+   check_sdwdate
+
+   cleanup
+}
+
+timesync_post_main ${1+"$@"}

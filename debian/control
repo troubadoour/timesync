@@ -1,0 +1,45 @@
+## This file is part of Whonix.
+## Copyright (C) 2012 - 2014 Patrick Schleizer <adrelanos@riseup.net>
+## See the file COPYING for copying conditions.
+
+Source: timesync
+Section: misc
+Priority: optional
+Maintainer: Patrick Schleizer <adrelanos@riseup.net>
+Build-Depends: debhelper (>= 8), faketime, git
+Homepage: https://www.whonix.org/wiki/Dev/TimeSync
+Vcs-Browser: https://github.com/Whonix/timesync
+Vcs-Git: https://github.com/Whonix/timesync.git
+Standards-Version: 3.9.4
+
+Package: timesync
+Architecture: all
+Depends: sdwdate, bootclockrandomization, timesanitycheck, msgcollector,
+ ${misc:Depends}
+Description: Sdwdate Monitor and User Interface Plugin
+ Timesync is a monitor and user interface for sdwdate, bootclockrandomization
+ and timesanitycheck. Notifications are dispatched in X and/or tty0 depending
+ on availability. Checks bootclockrandomization's status; runs timesanitycheck
+ before and after running sdwdate; checks sdwdate's status.
+ .
+ After boot, sdwdate runs in startup mode. When sdwdate is still in progress
+ when X gets available, a progress bar will be shown. Timesync informs with an
+ active popup in X if any error has been detected. Otherwise a passive popup in
+ X will notify success.
+ .
+ If sdwdate is still in progress when tty0 gets available, if sdwdate failed or
+ succeeded, notifications will be send to tty0.
+ .
+ These are important information for the user, because a correct clock is
+ crucial for security, anonymity and privacy.
+ .
+ To prevent the user from getting irrelevant information, unless timesync gets
+ manually run, later on, when sdwdate runs in daemon mode, no more progress
+ bars or success notifications will shown. Only failures will be notified then.
+ .
+ In other words:
+ - sdwdate startup mode: show progress bar if necessary, show failure or
+ success messages.
+ - sdwdate daemon mode: don't show progress bar or success messages, show
+ failure messages
+ - sdwdate manual mode: show progress bar, show failure or success messages.

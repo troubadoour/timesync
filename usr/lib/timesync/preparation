@@ -1,0 +1,72 @@
+#!/bin/bash
+
+## This file is part of Whonix.
+## Copyright (C) 2012 - 2014 Patrick Schleizer <adrelanos@riseup.net>
+## See the file COPYING for copying conditions.
+
+preparation() {
+   trap "error_handler" ERR
+
+   mkdir --parents ~/".timesync"
+
+   if [ -f ~/".timesync/pid" ]; then
+      local oldpid
+      oldpid="$(cat ~/".timesync/pid")" || true
+      if [ ! "$oldpid" = "" ]; then
+         ## $lastpid is used by by process_killer_helper.
+         lastpid="$oldpid"
+         process_killer_helper
+         unset lastpid
+      fi
+   fi
+
+   rm --force ~/".timesync/done"
+   touch ~/".timesync/running"
+   echo "$$" > ~/".timesync/pid"
+
+   sync
+
+   if [ "$display" = "" ]; then
+      if [ "$DISPLAY" = "" ]; then
+         display=":0"
+      else
+         display="$DISPLAY"
+      fi
+   fi
+
+   local my_tty
+   local my_tty_exit_code
+   my_tty_exit_code="0"
+   my_tty="$(tty)" || { my_tty_exit_code="$?" ; true; };
+
+   if [ ! "$my_tty_exit_code" = "0" ]; then
+      my_tty="none"
+   fi
+
+   ## Just in case.
+   if [ "$my_tty" = "" ]; then
+      my_tty="none"
+   fi
+
+   output="/usr/lib/msgcollector/msgcollector"
+
+   output_opt_1="--icon $ICON"
+   output_opt_2="--parentpid $$"
+   output_opt_3="--identifier $IDENTIFIER"
+   output_opt_4="--parenttty $my_tty"
+   #output_opt_5="--verbose"
+
+   output_opts=( "$output_opt_1" "$output_opt_2" "$output_opt_3" "$output_opt_4" "$output_opt_5")
+
+   if [ "$DAEMON" = "1" ]; then
+      true
+   elif [ "$AUTOSTARTED" = "1" ]; then
+      true
+   else
+      manualrun="1"
+   fi
+
+   TITLE="timesync - Monitor and user interface for sdwdate, bootclockrandomization and timesanitycheck"
+
+   TIME_START="$(date +%s)"
+}
