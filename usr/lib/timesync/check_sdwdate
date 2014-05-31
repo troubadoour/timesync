@@ -59,13 +59,23 @@ check_sdwdate_status() {
 check_sdwdate() {
    trap "error_handler" ERR
 
-   local HELPTEXT="See logfile: tail -f -n 20 /var/log/sdwdate.log
+   if [ -d /usr/share/whonix ]; then
+      local HELPTEXT="See logfile: tail -f -n 20 /var/log/sdwdate.log
 See status files: cd /var/run/sdwdate && dir
-Try again: Start menu -> Applications -> System -> Whonix Timesync
+Try again: Start menu -> Applications -> System -> Timesync
            or in Terminal: timesync
 Last resort: manually set the clock! (In UTC!):
              sudo su
              date -s \"17 FEB 2012 24:00:00\" && hwclock -w"
+   else
+      local HELPTEXT="See logfile: tail -f -n 20 /var/log/sdwdate.log
+See status files: cd /var/run/sdwdate && dir
+Try again: Start menu -> Applications -> System -> Timesync
+           or in Terminal: timesync
+Last resort: manually set the clock!:
+             sudo su
+             date -s \"17 FEB 2012 24:00:00\" && hwclock -w"
+   fi
 
    local TIMESANITYCHECK_STATUS
    TIMESANITYCHECK_STATUS="0"
@@ -136,7 +146,7 @@ $HELPTEXT"
             $output ${output_opts[@]} --messagecli --typecli "info" --titlecli "$TITLE" --message "$MSG"
          else
             local MSG="$MSG
-Neither manualrun ($manualrun), nor DAEMON ($DAEMON), nor AUTOSTARTED ($AUTOSTARTED). Please report this Whonix bug!"
+Neither manualrun ($manualrun), nor DAEMON ($DAEMON), nor AUTOSTARTED ($AUTOSTARTED). Please report this bug!"
             $output ${output_opts[@]} --messagex --typex "error" --titlex "$TITLE" --message "$MSG"
             $output ${output_opts[@]} --messagecli --typecli "error" --titlecli "$TITLE" --message "$MSG"
          fi
@@ -162,7 +172,8 @@ $HELPTEXT"
          ## sdwdate done, but no success. The clock is sane. This should rarely happen,
          ## only in case the internet connection was down at this point.
          check_sdwdate_terminate_tail
-         local MSG="Network Time Synchronization (timesync) done, but no success!!!
+         if [ -d /usr/share/whonix ]; then
+            local MSG="Network Time Synchronization (timesync) done, but no success!!!
 Is your internet connection down?
 
 Test your internet connection: Start menu -> Applications -> System -> Whonixcheck
@@ -170,6 +181,13 @@ Test your internet connection: Start menu -> Applications -> System -> Whonixche
                                or in Terminal with debugging: whonixcheck -v
 
 $HELPTEXT"
+         else
+            local MSG="Network Time Synchronization (timesync) done, but no success!!!
+Is your internet connection down?
+
+Test your internet connection.
+$HELPTEXT"
+         fi
          $output ${output_opts[@]} --messagex --typex "error" --titlex "$TITLE" --message "$MSG"
          $output ${output_opts[@]} --messagecli --typecli "error" --titlecli "$TITLE" --message "$MSG"
          return 0
