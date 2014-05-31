@@ -16,6 +16,7 @@ Package: timesync
 Architecture: all
 Depends: sdwdate, bootclockrandomization, timesanitycheck, msgcollector,
  ${misc:Depends}
+Recommends: vbox-disable-timesync
 Description: Sdwdate Monitor and User Interface Plugin
  Timesync is a monitor and user interface for sdwdate, bootclockrandomization
  and timesanitycheck. Notifications are dispatched in X and/or tty0 depending
