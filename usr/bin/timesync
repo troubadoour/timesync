@@ -78,7 +78,7 @@ For better security and anonymity, please do not use the internet until timesync
    run_timesanitycheck ## /usr/lib/timesync/check_clock
 
    ## Time Sanity Check after sdwdate was executed.
-   ## check_sdwdate also does timesanitycheck.
+   ## check_sdwdate also checks status of timesanitycheck.
    check_sdwdate ## /usr/lib/timesync/check_sdwdate
 
    cleanup ## cleanup
