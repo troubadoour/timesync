@@ -18,9 +18,10 @@ DISPATCH_POST_SUCCESS='/usr/lib/timesync/timesync_post_success --autostart --mod
 
 DISPATCH_POST_FAILURE='/usr/lib/timesync/timesync_post_failure --autostart --mode $SDW_MODE'
 
-SDWDATE_CURL_DISPATCH_PRE[SDWDATE_POOL_PAL]='/usr/lib/msgcollector/msgcollector --icon /usr/share/icons/anon-icon-pack/timesync.ico --identifier timesync --whoami "$who_ami" --progressbaridx timesync --progressx 15'
-SDWDATE_CURL_DISPATCH_POST[SDWDATE_POOL_PAL]='/usr/lib/msgcollector/msgcollector --icon /usr/share/icons/anon-icon-pack/timesync.ico --identifier timesync --whoami "$who_ami" --progressbaridx timesync --progressx 30'
-SDWDATE_CURL_DISPATCH_PRE[SDWDATE_POOL_NEUTRAL]='/usr/lib/msgcollector/msgcollector --icon /usr/share/icons/anon-icon-pack/timesync.ico --identifier timesync --whoami "$who_ami" --progressbaridx timesync --progressx 45'
-SDWDATE_CURL_DISPATCH_POST[SDWDATE_POOL_NEUTRAL]='/usr/lib/msgcollector/msgcollector --icon /usr/share/icons/anon-icon-pack/timesync.ico --identifier timesync --whoami "$who_ami" --progressbaridx timesync --progressx 60'
-SDWDATE_CURL_DISPATCH_PRE[SDWDATE_POOL_FOE]='/usr/lib/msgcollector/msgcollector --icon /usr/share/icons/anon-icon-pack/timesync.ico --identifier timesync --whoami "$who_ami" --progressbaridx timesync --progressx 65'
-SDWDATE_CURL_DISPATCH_POST[SDWDATE_POOL_FOE]='/usr/lib/msgcollector/msgcollector --icon /usr/share/icons/anon-icon-pack/timesync.ico --identifier timesync --whoami "$who_ami" --progressbaridx timesync --progressx 80'
+## TODO: --whoami
+SDWDATE_CURL_DISPATCH_PRE[SDWDATE_POOL_PAL]='/usr/lib/msgcollector/msgcollector --icon /usr/share/icons/anon-icon-pack/timesync.ico --identifier timesync --whoami "user" --progressbaridx timesync --progressx 15'
+SDWDATE_CURL_DISPATCH_POST[SDWDATE_POOL_PAL]='/usr/lib/msgcollector/msgcollector --icon /usr/share/icons/anon-icon-pack/timesync.ico --identifier timesync --whoami "user" --progressbaridx timesync --progressx 30'
+SDWDATE_CURL_DISPATCH_PRE[SDWDATE_POOL_NEUTRAL]='/usr/lib/msgcollector/msgcollector --icon /usr/share/icons/anon-icon-pack/timesync.ico --identifier timesync --whoami "user" --progressbaridx timesync --progressx 45'
+SDWDATE_CURL_DISPATCH_POST[SDWDATE_POOL_NEUTRAL]='/usr/lib/msgcollector/msgcollector --icon /usr/share/icons/anon-icon-pack/timesync.ico --identifier timesync --whoami "user" --progressbaridx timesync --progressx 60'
+SDWDATE_CURL_DISPATCH_PRE[SDWDATE_POOL_FOE]='/usr/lib/msgcollector/msgcollector --icon /usr/share/icons/anon-icon-pack/timesync.ico --identifier timesync --whoami "user" --progressbaridx timesync --progressx 65'
+SDWDATE_CURL_DISPATCH_POST[SDWDATE_POOL_FOE]='/usr/lib/msgcollector/msgcollector --icon /usr/share/icons/anon-icon-pack/timesync.ico --identifier timesync --whoami "user" --progressbaridx timesync --progressx 80'
