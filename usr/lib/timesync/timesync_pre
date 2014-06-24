@@ -19,8 +19,6 @@ progressbaridx_main="$progressbaridx"
 source /usr/lib/msgcollector/error_handler
 trap "error_handler" ERR
 
-source /usr/lib/anon-shared-helper-scripts/tor_enabled_check
-
 timesync_source_list="\
 /usr/lib/timesync/check_clock
 /usr/lib/timesync/check_sdwdate
