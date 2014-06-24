@@ -19,6 +19,10 @@ parse_cmd() {
                MODE="$2"
                shift 2
                ;;
+           --autostart)
+               AUTOSTARTED=1
+               shift
+               ;;
            --)
                shift
                break
