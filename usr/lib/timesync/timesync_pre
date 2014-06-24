@@ -22,13 +22,13 @@ trap "error_handler" ERR
 source /usr/lib/anon-shared-helper-scripts/tor_enabled_check
 
 timesync_source_list="\
-check_clock
-check_sdwdate
-cleanup
-parse_cmd
-preparation
-process_killer_helper
-run_sdwdate
+/usr/lib/timesync/check_clock
+/usr/lib/timesync/check_sdwdate
+/usr/lib/timesync/cleanup
+/usr/lib/timesync/parse_cmd
+/usr/lib/timesync/preparation
+/usr/lib/timesync/process_killer_helper
+/usr/lib/timesync/run_sdwdate
 "
 
 for i in $timesync_source_list; do
