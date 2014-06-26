@@ -7,11 +7,9 @@
 preparation() {
    trap "error_handler" ERR
 
-   mkdir --parents ~/".timesync"
-
-   if [ -f ~/".timesync/pid" ]; then
+   if [ -f "/var/run/sdwdate/timesync.pid" ]; then
       local oldpid
-      oldpid="$(cat ~/".timesync/pid")" || true
+      oldpid="$(cat "/var/run/sdwdate/timesync.pid")" || true
       if [ ! "$oldpid" = "" ]; then
          ## $lastpid is used by by process_killer_helper.
          lastpid="$oldpid"
@@ -20,9 +18,7 @@ preparation() {
       fi
    fi
 
-   rm --force ~/".timesync/done"
-   touch ~/".timesync/running"
-   echo "$$" > ~/".timesync/pid"
+   echo "$$" > "/var/run/sdwdate/timesync.pid"
 
    sync
 

@@ -65,8 +65,6 @@ cleanup() {
 
    $output ${output_opts[@]} --progressbaridx "$progressbaridx_main" --progressx "100"
 
-   touch ~/".timesync/done"
-
    sync
 
    ## The "Please feel free to press <enter> to return back to your normal prompt."
