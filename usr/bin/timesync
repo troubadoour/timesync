@@ -19,7 +19,17 @@ progressbaridx_main="$progressbaridx"
 source /usr/lib/msgcollector/error_handler
 trap "error_handler" ERR
 
-for i in /usr/lib/timesync/*; do
+timesync_source_list="\
+/usr/lib/timesync/check_clock
+/usr/lib/timesync/check_sdwdate
+/usr/lib/timesync/cleanup
+/usr/lib/timesync/parse_cmd
+/usr/lib/timesync/preparation
+/usr/lib/timesync/process_killer_helper
+/usr/lib/timesync/run_sdwdate
+"
+
+for i in $timesync_source_list; do
    if [ -f "$i" ]; then
       ## If the last character is a ~, ignore that file,
       ## because it was created by some editor,
