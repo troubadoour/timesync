@@ -18,7 +18,8 @@ preparation() {
       fi
    fi
 
-   echo "$$" > "/var/run/sdwdate/timesync.pid"
+   ## TODO
+   #echo "$$" > "/var/run/sdwdate/timesync.pid"
 
    sync
 
