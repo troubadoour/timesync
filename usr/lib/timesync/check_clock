@@ -17,7 +17,7 @@ check_bootclockrandomization() {
    ## There is an exception in /etc/sudoers.d/bootclockrandomization.
    local exit_code
    exit_code="0"
-   sudo service bootclockrandomization status || { exit_code="$?" ; true; };
+   sudo service bootclockrandomization status >/dev/null 2>&1 || { exit_code="$?" ; true; };
 
    if [ "$exit_code" = "0" ]; then
       local MSG="bootclockrandomization success."
@@ -41,7 +41,7 @@ check_timesanitycheck() {
    ## There is an exception in /etc/sudoers.d/timesanitycheck.
    local exit_code
    exit_code="0"
-   sudo service timesanitycheck status || { exit_code="$?" ; true; };
+   sudo service timesanitycheck status >/dev/null 2>&1 || { exit_code="$?" ; true; };
 
    ## When autostarted...
    if [ "$AUTOSTARTED" = "1" ]; then
@@ -59,7 +59,7 @@ Let us wait a few seconds and try checking timesanitycheck status again."
          ## There is an exception in /etc/sudoers.d/timesanitycheck.
          local exit_code
          exit_code="0"
-         sudo service timesanitycheck status || { exit_code="$?" ; true; };
+         sudo service timesanitycheck status >/dev/null 2>&1 || { exit_code="$?" ; true; };
       fi
    fi
 

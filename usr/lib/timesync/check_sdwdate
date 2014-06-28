@@ -80,7 +80,7 @@ Last resort: manually set the clock!:
    local TIMESANITYCHECK_STATUS
    TIMESANITYCHECK_STATUS="0"
    ## There is an exception in /etc/sudoers.d/timesanitycheck.
-   sudo service timesanitycheck status || { TIMESANITYCHECK_STATUS="$?" ; true; };
+   sudo service timesanitycheck status >/dev/null 2>&1 || { TIMESANITYCHECK_STATUS="$?" ; true; };
 
    if [ "$TIMESANITYCHECK_STATUS" = "0" ]; then
       TIMESANITYCHECK_STATUS_WORD="Success"
