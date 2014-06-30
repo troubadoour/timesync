@@ -12,8 +12,10 @@ ICON="/usr/share/icons/anon-icon-pack/timesync.ico"
 SCRIPTNAME="$(basename $0)"
 IDENTIFIER="timesync"
 
-tmp="$(mktemp)"
-progressbaridx="${tmp##*.}"
+## TODO
+#tmp="$(mktemp)"
+#progressbaridx="${tmp##*.}"
+progressbaridx="timesync"
 progressbaridx_main="$progressbaridx"
 
 source /usr/lib/msgcollector/error_handler

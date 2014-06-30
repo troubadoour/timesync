@@ -47,7 +47,11 @@ preparation() {
 
    output="/usr/lib/msgcollector/msgcollector"
 
-   who_ami="$(whoami)"
+   ## TODO
+   if [ "$who_ami" = "" ]; then
+      #who_ami="$(whoami)"
+      who_ami="user"
+   fi
 
    output_opt_1="--icon $ICON"
    output_opt_2="--parentpid $$"
