@@ -17,12 +17,12 @@ because the /etc/init.d/sdwdate init should have already started sdwdate (unless
    else
       ## When manually run...
       if [ ! -x "/etc/init.d/sdwdate" ]; then
-         local MSG='/etc/init.d/sdwdate not executable.
+         local MSG='<p><b>/etc/init.d/sdwdate not executable.</b></p>
 
-Most likely you removed the executable bit from /etc/init.d/sdwdate using "sudo chmod -x /etc/init.d/sdwdate"
+<p>Most likely you removed the executable bit from /etc/init.d/sdwdate using "sudo chmod -x /etc/init.d/sdwdate</p>"
 
-To undo this, type in terminal:
-sudo chmod +x /etc/init.d/sdwdate'
+<p>To undo this, type in terminal:
+<blockquote>sudo chmod +x /etc/init.d/sdwdate</blockquote></p>'
          $output ${output_opts[@]} --messagex --typex "error" --titlex "$TITLE" --message "$MSG"
          $output ${output_opts[@]} --messagecli --typecli "error" --titlecli "$TITLE" --message "$MSG"
          return 0

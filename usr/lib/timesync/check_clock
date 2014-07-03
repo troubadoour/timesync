@@ -20,16 +20,16 @@ check_bootclockrandomization() {
    sudo service bootclockrandomization status >/dev/null 2>&1 || { exit_code="$?" ; true; };
 
    if [ "$exit_code" = "0" ]; then
-      local MSG="bootclockrandomization success."
+      local MSG="<p>bootclockrandomization success.</p>"
       if [ "$verbose" = "1" ]; then
          $output ${output_opts[@]} --messagex --typex "info" --titlex "$TITLE" --message "$MSG"
          $output ${output_opts[@]} --messagecli --typecli "info" --titlecli "$TITLE" --message "$MSG"
       fi
    else
       local MSG
-      MSG="bootclockrandomization failed. Please report this bug!
-Last 6 lines of /var/log/bootclockrandomization.log:
-$(tail -n 6 /var/log/bootclockrandomization.log)" || true
+      MSG="<p><b>bootclockrandomization failed.</b> Please report this bug!</p>
+<p>Last 6 lines of /var/log/bootclockrandomization.log:
+<blockquote>$(tail -n 6 /var/log/bootclockrandomization.log)</blockquote></p>" || true
       $output ${output_opts[@]} --messagex --typex "error" --titlex "$TITLE" --message "$MSG"
       $output ${output_opts[@]} --messagecli --typecli "error" --titlecli "$TITLE" --message "$MSG"
    fi
@@ -47,8 +47,8 @@ check_timesanitycheck() {
    if [ "$AUTOSTARTED" = "1" ]; then
       ## exit_code 2 means, that timesanitycheck has neither created a success nor a fail file (yet).
       if [ "$exit_code" = "2" ]; then
-         local MSG="It may have happened, that sdwdate was run before timesanitycheck.
-Let us wait a few seconds and try checking timesanitycheck status again."
+         local MSG="<p>It may have happened, that sdwdate was run before timesanitycheck.
+<br></br>Let us wait a few seconds and try checking timesanitycheck status again.</p>"
          if [ "$verbose" = "1" ]; then
             $output ${output_opts[@]} --messagex --typex "info" --titlex "$TITLE" --message "$MSG"
             $output ${output_opts[@]} --messagecli --typecli "info" --titlecli "$TITLE" --message "$MSG"
@@ -64,18 +64,18 @@ Let us wait a few seconds and try checking timesanitycheck status again."
    fi
 
    if [ "$exit_code" = "0" ]; then
-      local MSG="timesanitycheck success."
+      local MSG="<p>timesanitycheck success.</p>"
       if [ "$verbose" = "1" ]; then
          $output ${output_opts[@]} --messagex --typex "info" --titlex "$TITLE" --message "$MSG"
          $output ${output_opts[@]} --messagecli --typecli "info" --titlecli "$TITLE" --message "$MSG"
       fi
    else
-      local MSG="Time Sanity Check failed before running Network Time Synchronization (timesync)!!! (code: $exit_code)
-Last 6 lines of /var/log/timesanitycheck.log:
-$(tail -n 6 /var/log/timesanitycheck.log)
+      local MSG="<p><b>Time Sanity Check failed before running Network Time Synchronization (timesync)!!!</b> (code: $exit_code)</p>
+<p>Last 6 lines of /var/log/timesanitycheck.log:
+<blockquote>$(tail -n 6 /var/log/timesanitycheck.log)</blockquote>
 
 Is your host clock slow or fast? If so, please power off, fix your host clock and restart.
-If your host clock is sane, please report a bug."
+<br></br>If your host clock is sane, please report a bug."</p>
       $output ${output_opts[@]} --messagex --typex "error" --titlex "$TITLE" --message "$MSG"
       $output ${output_opts[@]} --messagecli --typecli "error" --titlecli "$TITLE" --message "$MSG"
    fi
