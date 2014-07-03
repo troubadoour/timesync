@@ -75,7 +75,7 @@ check_timesanitycheck() {
 <blockquote>$(tail -n 6 /var/log/timesanitycheck.log)</blockquote>
 
 Is your host clock slow or fast? If so, please power off, fix your host clock and restart.
-<br></br>If your host clock is sane, please report a bug."</p>
+<br></br>If your host clock is sane, please report a bug.</p>"
       $output ${output_opts[@]} --messagex --typex "error" --titlex "$TITLE" --message "$MSG"
       $output ${output_opts[@]} --messagecli --typecli "error" --titlecli "$TITLE" --message "$MSG"
    fi
