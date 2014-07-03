@@ -79,12 +79,12 @@ cleanup() {
       if [ "$output_status_exit_code" = "0" ]; then
          ## We have messages to show.
          ## Add press enter to return back to your normal prompt message below.
-         local MSG="Please feel free to press <enter> to return back to your normal prompt."
+         local MSG="<p>Please feel free to press <enter> to return back to your normal prompt.</p>"
          $output ${output_opts[@]} --messagecli --typecli "info" --titlecli "$TITLE" --message "$MSG"
       elif [ "$output_status_exit_code" = "1" ]; then
-         true "No messages for --messagecli in the queue. Not adding press enter to return back to your normal prompt message below."
+         true "<p>No messages for --messagecli in the queue. Not adding press enter to return back to your normal prompt message below.</p>"
       else
-         local MSG="$output returned $output_status_exit_code. Please report this bug!"
+         local MSG="<p><b>$output returned $output_status_exit_code.</b> Please report this bug!</p>"
          $output ${output_opts[@]} --messagecli --typecli "error" --titlecli "$TITLE" --message "$MSG"
          $output ${output_opts[@]} --messagex --typex "error" --titlex "$TITLE" --message "$MSG"
       fi

@@ -84,23 +84,22 @@ timesync_pre_main() {
    ## is nothing important to tell. (Interested ones could watch the logs.)
    if [ "$MODE" = "startup" ]; then
       ## Do not use < > inside zenity progress messages, zenity will mess that up.
-      local MSG="Running Secure Network Time Synchronization (sdwdate)...
-This will happen in background and if internet connectivity is functional it will take approximately 60 seconds.
+      local MSG="<p>Running Secure Network Time Synchronization (sdwdate)...
+<br></br>This will happen in background and if internet connectivity is functional it will take approximately 60 seconds.</p>
 
-If you like to watch the log, open a terminal and run:
-    tail -f /var/log/sdwdate.log
+<p>If you like to watch the log, open a terminal and run:
+    <blockquote>tail -f /var/log/sdwdate.log</blockquote></p>
 
-For better security and anonymity, please do not use the internet until timesync succeeded."
+<p>For better security and anonymity, please do not use the internet until timesync succeeded.</p>"
       $output ${output_opts[@]} --progressbaridx "$progressbaridx" --progressbarx --titlex "$TITLE" --message "$MSG" --done
 
-      local MSG="Running Secure Network Time Synchronization (sdwdate)...
-This will happen in background and if internet connectivity is functional it will take approximately 60 seconds.
+      local MSG="<p>Running Secure Network Time Synchronization (sdwdate)...
+<br></br>This will happen in background and if internet connectivity is functional it will take approximately 60 seconds.</p>
 
-If you like to watch the log, open a terminal and run:
-    tail -f /var/log/sdwdate.log
+<p>If you like to watch the log, open a terminal and run:
+    <blockquote>tail -f /var/log/sdwdate.log</blockquote></p>
 
-For better security and anonymity, please do not use the internet until timesync succeeded.
-Please feel free to press <enter> to return back to your normal prompt."
+<p>For better security and anonymity, please do not use the internet until timesync succeeded.</p>"
       $output ${output_opts[@]} --waitmessagecli --typecli "info" --titlecli "$TITLE" --message "$MSG" --done
    else
       true "MODE: $MODE"
