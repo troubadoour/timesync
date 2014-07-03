@@ -130,13 +130,17 @@ $HELPTEXT"
       if [ "$TIMESANITYCHECK_STATUS" = "0" ]; then
          ## Ok.
          check_sdwdate_terminate_tail
-         local MSG="Last run (on "$SUCCESS_TIME") of Network Time Synchronization (timesync) was successful.
+         local MSG="Last run (on "$SUCCESS_TIME") of Network Time Synchronization (timesync) was successful."
+         if [ "$manualrun" = "1" ]; then
+            ## When manually started, ask for donation.
+            local MSG="$MSG
 
 Please donate:
 http://whonix.org/wiki/Donate"
-         if [ "$manualrun" = "1" ]; then
             ## When manually started, always use an active popup.
             $output ${output_opts[@]} --messagex --typex "info" --titlex "$TITLE" --message "$MSG"
+            local MSG="$MSG
+Please donate: http://whonix.org/wiki/Donate"
             $output ${output_opts[@]} --messagecli --typecli "info" --titlecli "$TITLE" --message "$MSG"
          elif [ "$DAEMON" = "1" ]; then
             true "No success message in daemon mode."
