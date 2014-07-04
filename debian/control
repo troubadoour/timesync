@@ -14,7 +14,7 @@ Standards-Version: 3.9.4
 
 Package: timesync
 Architecture: all
-Depends: sdwdate, bootclockrandomization, timesanitycheck, msgcollector, generic-gui-message,
+Depends: sdwdate, bootclockrandomization, timesanitycheck, msgcollector,
  sudo, ${misc:Depends}
 Recommends: vbox-disable-timesync
 Description: Sdwdate Monitor and User Interface Plugin
