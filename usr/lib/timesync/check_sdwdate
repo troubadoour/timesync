@@ -136,7 +136,7 @@ check_sdwdate() {
             local MSG="$MSG
 
 <p>Please donate:
-<br></br>http://whonix.org/wiki/Donate</p>"
+<br></br><a href=https://www.whonix.org/wiki/Donate>https://www.whonix.org/wiki/Donate</a></p>"
             ## When manually started, always use an active popup.
             $output ${output_opts[@]} --messagex --typex "info" --titlex "$TITLE" --message "$MSG"
             local MSG="$MSG
