@@ -9,7 +9,7 @@ set -o pipefail
 
 ICON="/usr/share/icons/anon-icon-pack/timesync.ico"
 
-SCRIPTNAME="$(basename $0)"
+SCRIPTNAME="$(basename $BASH_SOURCE)"
 IDENTIFIER="timesync"
 
 ## TODO
