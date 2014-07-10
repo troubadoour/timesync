@@ -56,11 +56,11 @@ timesync_post_error() {
 
    ## no $output --forget
 
-   local MSG="${1+"$@"}"
-
    if [ "$MSG" = "" ]; then
-      local MSG="<p>$FUNCNAME: empty error message. Please report this bug!</p>"
+      local MSG="$FUNCNAME: empty error message. Please report this bug!"
    fi
+
+   local MSG="<p>${1+"$@"}</p>"
 
    $output ${output_opts[@]} --messagex --typex "error" --titlex "$TITLE" --message "$MSG"
    $output ${output_opts[@]} --messagecli --typecli "error" --titlecli "$TITLE" --message "$MSG"
