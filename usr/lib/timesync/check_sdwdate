@@ -113,8 +113,8 @@ check_sdwdate() {
       ## If there is no pid file or no process after we restarted sdwdate, it is a bug.
       check_sdwdate_terminate_tail
       local MSG="<p><b>Network Time Synchronization (timesync) failed!!!</b>
-<br></br>TIMESANITYCHECK_STATUS: "$TIMESANITYCHECK_STATUS_WORD"
-<br></br>"$SDWDATE_STATUS" Please report this bug!</p>
+<br></br>TIMESANITYCHECK_STATUS: $TIMESANITYCHECK_STATUS_WORD
+<br></br>$SDWDATE_STATUS Please report this bug!</p>
 
 <p>$HELPTEXT</p>"
       $output ${output_opts[@]} --messagex --typex "error" --titlex "$TITLE" --message "$MSG"
@@ -130,7 +130,7 @@ check_sdwdate() {
       if [ "$TIMESANITYCHECK_STATUS" = "0" ]; then
          ## Ok.
          check_sdwdate_terminate_tail
-         local MSG="<p>Last run (on "$SUCCESS_TIME") of Network Time Synchronization (timesync) was successful.</p>"
+         local MSG="<p>Last run (on $SUCCESS_TIME) of Network Time Synchronization (timesync) was successful.</p>"
          if [ "$manualrun" = "1" ]; then
             ## When manually started, ask for donation.
             local MSG="$MSG
@@ -162,7 +162,7 @@ Please donate: http://whonix.org/wiki/Donate"
          ## Something went wrong.
          check_sdwdate_terminate_tail
          local MSG="<p><b>The clock is not sane,</b>
-<br></br>although last run (on "$SUCCESS_TIME") of Network Time Synchronization (timesync) was successful.
+<br></br>although last run (on $SUCCESS_TIME) of Network Time Synchronization (timesync) was successful.
 <br></br>Please report this bug!</p>
 
 <p>Either timesync has a bug or this is an attack. Better manually set your clock!!!</p>
@@ -227,8 +227,8 @@ Please donate: http://whonix.org/wiki/Donate"
    ## Should not happen, because sdwdate has its own timeout.
    check_sdwdate_terminate_tail
    local MSG="<p><b>Network Time Synchronization failed!!!</b>
-<br></br>SDWDATE_STATUS: "$SDWDATE_STATUS"
-<br></br>TIMESANITYCHECK_STATUS: "$TIMESANITYCHECK_STATUS_WORD"
+<br></br>SDWDATE_STATUS: $SDWDATE_STATUS
+<br></br>TIMESANITYCHECK_STATUS: $TIMESANITYCHECK_STATUS_WORD
 <br></br>Please report this bug!</p>
 
 <p>$HELPTEXT</p>"
