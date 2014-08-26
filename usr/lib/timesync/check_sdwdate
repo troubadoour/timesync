@@ -131,10 +131,10 @@ check_sdwdate() {
          ## Ok.
          check_sdwdate_terminate_tail
          local MSG="<p>Last run (on $SUCCESS_TIME) of Network Time Synchronization (timesync) was successful.</p>"
-         ## When manually started, always use an active popup.
-         $output ${output_opts[@]} --messagex --typex "info" --titlex "$TITLE" --message "$MSG"
-         $output ${output_opts[@]} --messagecli --typecli "info" --titlecli "$TITLE" --message "$MSG"
          if [ "$manualrun" = "1" ]; then
+            ## When manually started, always use an active popup.
+            $output ${output_opts[@]} --messagex --typex "info" --titlex "$TITLE" --message "$MSG"
+            $output ${output_opts[@]} --messagecli --typecli "info" --titlecli "$TITLE" --message "$MSG"
             ## When manually started, ask for donation.
             local MSG="<p>Please donate:
 <br></br><a href=https://www.whonix.org/wiki/Donate>https://www.whonix.org/wiki/Donate</a></p>"
