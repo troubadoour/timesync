@@ -13,8 +13,6 @@ SCRIPTNAME="$(basename "$BASH_SOURCE")"
 IDENTIFIER="timesync"
 
 ## TODO
-#tmp="$(mktemp)"
-#progressbaridx="${tmp##*.}"
 progressbaridx="timesync"
 progressbaridx_main="$progressbaridx"
 
