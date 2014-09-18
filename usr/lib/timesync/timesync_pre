@@ -10,11 +10,6 @@ set -o pipefail
 ICON="/usr/share/icons/anon-icon-pack/timesync.ico"
 
 SCRIPTNAME="$(basename "$BASH_SOURCE")"
-IDENTIFIER="timesync"
-
-## TODO
-progressbaridx="timesync"
-progressbaridx_main="$progressbaridx"
 
 source /usr/lib/msgcollector/error_handler
 trap "error_handler" ERR
@@ -50,8 +45,8 @@ done
 timesync_pre_main() {
    trap "error_handler" ERR
 
-   preparation
    parse_cmd "${1+"$@"}"
+   preparation
 
    $output ${output_opts[@]} --forget
    ## Sleep to prevent a race condition.

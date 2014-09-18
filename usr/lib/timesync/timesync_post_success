@@ -10,11 +10,6 @@ set -o pipefail
 ICON="/usr/share/icons/anon-icon-pack/timesync.ico"
 
 SCRIPTNAME="$(basename "$BASH_SOURCE")"
-IDENTIFIER="timesync"
-
-## TODO
-progressbaridx="timesync"
-progressbaridx_main="$progressbaridx"
 
 source /usr/lib/msgcollector/error_handler
 trap "error_handler" ERR

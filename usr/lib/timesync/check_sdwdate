@@ -93,7 +93,7 @@ check_sdwdate() {
    ## because we restarted sdwdate with "sudo service sdwdate restartnd". (The
    ## "nd" in "restartnd" means "no dispatch". Therefore we let timsync move
    ## the progress bar.
-   $output ${output_opts[@]} --progressbaridx "$progressbaridx_main" --progressx "$PROGRESS"
+   $output ${output_opts[@]} --progressbaridx "$progressbaridx" --progressx "$PROGRESS"
 
    TIME_END="$(date +%s)"
    TIME_DIFF="$(( $TIME_END - $TIME_START ))"

@@ -16,6 +16,7 @@ ex_funct() {
    ## create an endless loop.
    trap - SIGTERM
    trap - SIGINT
+   trap - SIGUSR2
 
    ## kill $lastpid (if running)
    process_killer_helper
@@ -30,12 +31,18 @@ ex_funct() {
    command_v_output_exit_code="0"
    command -v "$output" >/dev/null || { command_v_output_exit_code="$?" ; true; };
    if [ "$command_v_output_exit_code" = "0" ]; then
-      $output ${output_opts[@]} --progressbaridx "$progressbaridx_main" --progressx "100"
-      $output ${output_opts[@]} --progressbaridx "$progressbaridx" --progressx "100"
+      if [ ! "$SIGNAL_TYPE" = "SIGUSR2" ]; then
+         $output ${output_opts[@]} --progressbaridx "$progressbaridx" --progressx "100"
+      fi
       $output ${output_opts[@]} --messagex --done
       $output ${output_opts[@]} --messagecli --done
    fi
-   exit 0
+
+   if [ "$EXIT_CODE" = "" ]; then
+      EXIT_CODE="1"
+   fi
+
+   exit "$EXIT_CODE"
 }
 
 ## }}
@@ -43,7 +50,8 @@ ex_funct() {
 trap_sigterm() {
    trap "error_handler" ERR
 
-   echo "$SCRIPTNAME: SIGTERM received. Cleaning up... Exiting..."
+   SIGNAL_TYPE="SIGTERM"
+   EXIT_CODE="143"
    ex_funct
 }
 
@@ -52,20 +60,27 @@ trap "trap_sigterm" SIGTERM
 trap_sigint() {
    trap "error_handler" ERR
 
-   echo "$SCRIPTNAME: SIGTERM received. Cleaning up... Exiting..."
+   SIGNAL_TYPE="SIGINT"
+   EXIT_CODE="130"
    ex_funct
 }
 
-trap "trap_sigint" SIGINT
+trap "trap_sigint" SIGINT ## ctrl + c
+
+trap_sigusr2() {
+   trap "error_handler" ERR
+
+   SIGNAL_TYPE="SIGUSR2"
+   EXIT_CODE="0"
+   ex_funct
+}
+
+trap "trap_sigusr2" SIGUSR2 ## msgcollector, zenity cancel button
 
 cleanup() {
    trap "error_handler" ERR
 
    true "cleanup function..."
-
-   $output ${output_opts[@]} --progressbaridx "$progressbaridx_main" --progressx "100"
-
-   sync
 
    ## The "Please feel free to press <enter> to return back to your normal prompt."
    ## message is not necessary when manually started.
@@ -90,14 +105,10 @@ cleanup() {
       fi
    fi
 
-   $output ${output_opts[@]} --messagex --done
-   $output ${output_opts[@]} --messagecli --done
-
    ## default exit code
    if [ "$EXIT_CODE" = "" ]; then
       EXIT_CODE="0"
    fi
 
-   true "END"
-   exit "$EXIT_CODE"
+   ex_funct
 }

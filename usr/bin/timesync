@@ -11,9 +11,7 @@ ICON="/usr/share/icons/anon-icon-pack/timesync.ico"
 
 SCRIPTNAME="$(basename "$BASH_SOURCE")"
 IDENTIFIER="timesync"
-
-progressbaridx="$(cat "/proc/sys/kernel/random/uuid")"
-progressbaridx_main="$progressbaridx"
+progressbaridx="$IDENTIFIER"
 
 source /usr/lib/msgcollector/error_handler
 trap "error_handler" ERR

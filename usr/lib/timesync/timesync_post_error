@@ -10,11 +10,6 @@ set -o pipefail
 ICON="/usr/share/icons/anon-icon-pack/timesync.ico"
 
 SCRIPTNAME="$(basename "$BASH_SOURCE")"
-IDENTIFIER="timesync"
-
-## TODO
-progressbaridx="timesync"
-progressbaridx_main="$progressbaridx"
 
 source /usr/lib/msgcollector/error_handler
 trap "error_handler" ERR
@@ -50,15 +45,18 @@ done
 timesync_post_error() {
    trap "error_handler" ERR
 
+   parse_cmd ${1+"$@"}
    preparation
 
    ## no $output --forget
 
+   local MSG
+   MSG="$@"
    if [ "$MSG" = "" ]; then
-      local MSG="$FUNCNAME: empty error message. Please report this bug!"
+      MSG="$FUNCNAME: empty error message. Please report this bug!"
    fi
 
-   local MSG="<p>${1+"$@"}</p>"
+   local MSG="<p>$MSG</p>"
 
    $output ${output_opts[@]} --messagex --typex "error" --titlex "$TITLE" --message "$MSG"
    $output ${output_opts[@]} --messagecli --typecli "error" --titlecli "$TITLE" --message "$MSG"

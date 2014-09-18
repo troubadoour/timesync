@@ -10,20 +10,21 @@
 
 ## (Developer comment: When modifying this line, also consider modifying /usr/lib/whonixsetup_/ft_m_1.)
 ## See 30_sdwdate_default and /usr/lib/timesync/timesync_pre for a comment on the SDW_MODE variable.
-DISPATCH_PRE='/usr/lib/timesync/timesync_pre --autostart --mode $SDW_MODE'
+## TODO: /usr/lib/whonixsetup_/ft_m_1
+DISPATCH_PRE='/usr/lib/timesync/timesync_pre --autostart --identifier "timesync" --progressbaridx "$ID" --mode "$SDW_MODE"'
 
-DISPATCH_POST_ERROR='/usr/lib/timesync/timesync_post_error "$error_message" & disown'
+DISPATCH_POST_ERROR='/usr/lib/timesync/timesync_post_error --identifier "timesync" --progressbaridx "$ID" "$error_message" & disown'
 
-DISPATCH_POST_SUCCESS='/usr/lib/timesync/timesync_post_success --autostart --mode $SDW_MODE'
+DISPATCH_POST_SUCCESS='/usr/lib/timesync/timesync_post_success --autostart --identifier "timesync" --progressbaridx "$ID" --mode "$SDW_MODE"'
 
-DISPATCH_POST_FAILURE='/usr/lib/timesync/timesync_post_failure --autostart --mode $SDW_MODE'
+DISPATCH_POST_FAILURE='/usr/lib/timesync/timesync_post_failure --autostart --identifier "timesync" --progressbaridx "$ID" --mode "$SDW_MODE"'
 
 ## TODO
 who_ami="user"
 
-SDWDATE_CURL_DISPATCH_PRE[SDWDATE_POOL_ONE]='/usr/lib/msgcollector/msgcollector --icon /usr/share/icons/anon-icon-pack/timesync.ico --identifier timesync --whoami "$who_ami" --progressbaridx timesync --progressx 15'
-SDWDATE_CURL_DISPATCH_POST[SDWDATE_POOL_ONE]='/usr/lib/msgcollector/msgcollector --icon /usr/share/icons/anon-icon-pack/timesync.ico --identifier timesync --whoami "$who_ami" --progressbaridx timesync --progressx 30'
-SDWDATE_CURL_DISPATCH_PRE[SDWDATE_POOL_TWO]='/usr/lib/msgcollector/msgcollector --icon /usr/share/icons/anon-icon-pack/timesync.ico --identifier timesync --whoami "$who_ami" --progressbaridx timesync --progressx 45'
-SDWDATE_CURL_DISPATCH_POST[SDWDATE_POOL_TWO]='/usr/lib/msgcollector/msgcollector --icon /usr/share/icons/anon-icon-pack/timesync.ico --identifier timesync --whoami "$who_ami" --progressbaridx timesync --progressx 60'
-SDWDATE_CURL_DISPATCH_PRE[SDWDATE_POOL_THREE]='/usr/lib/msgcollector/msgcollector --icon /usr/share/icons/anon-icon-pack/timesync.ico --identifier timesync --whoami "$who_ami" --progressbaridx timesync --progressx 65'
-SDWDATE_CURL_DISPATCH_POST[SDWDATE_POOL_THREE]='/usr/lib/msgcollector/msgcollector --icon /usr/share/icons/anon-icon-pack/timesync.ico --identifier timesync --whoami "$who_ami" --progressbaridx timesync --progressx 80'
+SDWDATE_CURL_DISPATCH_PRE[SDWDATE_POOL_ONE]='/usr/lib/msgcollector/msgcollector --icon /usr/share/icons/anon-icon-pack/timesync.ico --identifier "timesync" --progressbaridx "$ID" --whoami "$who_ami" --progressx 15'
+SDWDATE_CURL_DISPATCH_POST[SDWDATE_POOL_ONE]='/usr/lib/msgcollector/msgcollector --icon /usr/share/icons/anon-icon-pack/timesync.ico --identifier "timesync" --progressbaridx "$ID" --whoami "$who_ami" --progressx 30'
+SDWDATE_CURL_DISPATCH_PRE[SDWDATE_POOL_TWO]='/usr/lib/msgcollector/msgcollector --icon /usr/share/icons/anon-icon-pack/timesync.ico --identifier "timesync" --progressbaridx "$ID" --whoami "$who_ami" --progressx 45'
+SDWDATE_CURL_DISPATCH_POST[SDWDATE_POOL_TWO]='/usr/lib/msgcollector/msgcollector --icon /usr/share/icons/anon-icon-pack/timesync.ico --identifier "timesync" --progressbaridx "$ID" --whoami "$who_ami" --progressx 60'
+SDWDATE_CURL_DISPATCH_PRE[SDWDATE_POOL_THREE]='/usr/lib/msgcollector/msgcollector --icon /usr/share/icons/anon-icon-pack/timesync.ico --identifier "timesync" --progressbaridx "$ID" --whoami "$who_ami" --progressx 65'
+SDWDATE_CURL_DISPATCH_POST[SDWDATE_POOL_THREE]='/usr/lib/msgcollector/msgcollector --icon /usr/share/icons/anon-icon-pack/timesync.ico --identifier "timesync" --progressbaridx "$ID" --whoami "$who_ami" --progressx 80'

@@ -9,7 +9,7 @@ run_sdwdate() {
 
    PROGRESS="$(( $PROGRESS + 5 ))"
    ## The 5% indicate, that the check has begun.
-   $output ${output_opts[@]} --progressbaridx "$progressbaridx_main" --progressx "$PROGRESS"
+   $output ${output_opts[@]} --progressbaridx "$progressbaridx" --progressx "$PROGRESS"
 
    if [ "$AUTOSTARTED" = "1" ]; then
       true "$SCRIPTNAME run_sdwdate: not restarting sdwdate in this case, \
@@ -60,5 +60,5 @@ tail -f /var/log/sdwdate.log"
    fi
 
    PROGRESS="$(( $PROGRESS + 1 ))"
-   $output ${output_opts[@]} --progressbaridx "$progressbaridx_main" --progressx "$PROGRESS"
+   $output ${output_opts[@]} --progressbaridx "$progressbaridx" --progressx "$PROGRESS"
 }

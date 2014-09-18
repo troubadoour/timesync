@@ -23,6 +23,14 @@ parse_cmd() {
                AUTOSTARTED=1
                shift
                ;;
+           --identifier)
+               IDENTIFIER="$2"
+               shift 2
+               ;;
+           --progressbaridx)
+               progressbaridx="$2"
+               shift 2
+               ;;
            --)
                shift
                break
