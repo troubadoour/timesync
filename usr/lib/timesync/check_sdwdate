@@ -143,6 +143,8 @@ check_sdwdate() {
          elif [ "$DAEMON" = "1" ]; then
             true "No success message in daemon mode."
          ## See timesync_pre for a comment on the (SDW_)MODE variable.
+         elif [ "$MODE" = "restartup" ]; then
+            true "No success message when in SDW_MODE restartup."
          elif [ "$MODE" = "daemon" ]; then
             true "No success message when in SDW_MODE daemon."
          elif [ "$AUTOSTARTED" = "1" ]; then
