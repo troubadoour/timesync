@@ -77,18 +77,17 @@ timesync_pre_main() {
    ## the user will be informed about the failure. In case it succeeded, there
    ## is nothing important to tell. (Interested ones could watch the logs.)
    if [ "$MODE" = "startup" ]; then
-      if [ ! -f "/var/run/sdwdate/first_success" ]; then
-         ## Do not use < > inside zenity progress messages, zenity will mess that up.
-         local MSG="<p>Running Secure Network Time Synchronization (sdwdate)...
+      ## Do not use < > inside zenity progress messages, zenity will mess that up.
+      local MSG="<p>Running Secure Network Time Synchronization (sdwdate)...
 <br></br>This will happen in background and if internet connectivity is functional it will take approximately 60 seconds.</p>
 
 <p>If you like to watch the log, open a terminal and run:
     <blockquote>tail -f /var/log/sdwdate.log</blockquote></p>
 
 <p>For better security and anonymity, please do not use the internet until timesync succeeded.</p>"
-         $output ${output_opts[@]} --progressbaridx "$progressbaridx" --progressbarx --titlex "$TITLE" --message "$MSG" --done
+      $output ${output_opts[@]} --progressbaridx "$progressbaridx" --progressbarx --titlex "$TITLE" --message "$MSG" --done
 
-         local MSG="<p>Running Secure Network Time Synchronization (sdwdate)...
+      local MSG="<p>Running Secure Network Time Synchronization (sdwdate)...
 <br></br>This will happen in background and if internet connectivity is functional it will take approximately 60 seconds.</p>
 
 <p>If you like to watch the log, open a terminal and run:
@@ -96,8 +95,7 @@ timesync_pre_main() {
 
 <p>For better security and anonymity, please do not use the internet until timesync succeeded.</p>
 <p>Please feel free to press <enter> to return back to your normal prompt.</p>"
-         $output ${output_opts[@]} --waitmessagecli --typecli "info" --titlecli "$TITLE" --message "$MSG" --done
-      fi
+      $output ${output_opts[@]} --waitmessagecli --typecli "info" --titlecli "$TITLE" --message "$MSG" --done
    else
       true "MODE: $MODE"
    fi
