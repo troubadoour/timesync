@@ -31,6 +31,14 @@ parse_cmd() {
                progressbaridx="$2"
                shift 2
                ;;
+           --progressx)
+               progressx="$2"
+               shift 2
+               ;;
+           --whoami)
+               who_ami="$2"
+               shift 2
+               ;;
            --)
                shift
                break
