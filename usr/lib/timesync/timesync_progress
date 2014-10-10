@@ -49,7 +49,8 @@ timesync_pre_main() {
    #preparation
 
    if [ "$MODE" = "startup" ]; then
-      /usr/lib/msgcollector/msgcollector --icon /usr/share/icons/anon-icon-pack/timesync.ico --identifier "$IDENTIFIER" --progressbaridx "$progressbaridx" --whoami "$who_ami" --progressx "$progressx"
+      ## Use & to prevent blocking.
+      /usr/lib/msgcollector/msgcollector --icon /usr/share/icons/anon-icon-pack/timesync.ico --identifier "$IDENTIFIER" --progressbaridx "$progressbaridx" --whoami "$who_ami" --progressx "$progressx" &
    else
       true "MODE: $MODE"
    fi
