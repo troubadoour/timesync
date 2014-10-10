@@ -31,6 +31,28 @@ ex_funct() {
    command_v_output_exit_code="0"
    command -v "$output" >/dev/null || { command_v_output_exit_code="$?" ; true; };
    if [ "$command_v_output_exit_code" = "0" ]; then
+      local output_status_exit_code
+      output_status_exit_code="0"
+      $output ${output_opts[@]} --identifier "$IDENTIFIER" --status --messagecli || { output_status_exit_code="$?" ; true; };
+
+      ## The "Please feel free to press <enter> to return back to your normal prompt."
+      ## message is not necessary when manually started.
+      if [ ! "$manualrun" = "1" ]; then
+         ## Not manually started.
+         if [ "$output_status_exit_code" = "0" ]; then
+            ## We have messages to show.
+            ## Add press enter to return back to your normal prompt message below.
+            local MSG="<p>Please feel free to press enter to return back to your normal prompt.</p>"
+            $output ${output_opts[@]} --messagecli --typecli "info" --titlecli "$TITLE" --message "$MSG"
+         elif [ "$output_status_exit_code" = "1" ]; then
+            true "No messages for --messagecli in the queue. Not adding press enter to return back to your normal prompt message below."
+         else
+            local MSG="<p><b>$output returned $output_status_exit_code.</b> Please report this bug!</p>"
+            $output ${output_opts[@]} --messagecli --typecli "error" --titlecli "$TITLE" --message "$MSG"
+            $output ${output_opts[@]} --messagex --typex "error" --titlex "$TITLE" --message "$MSG"
+         fi
+      fi
+
       if [ ! "$SIGNAL_TYPE" = "SIGUSR2" ]; then
          $output ${output_opts[@]} --progressbaridx "$progressbaridx" --progressx "100"
       fi
@@ -81,29 +103,6 @@ cleanup() {
    trap "error_handler" ERR
 
    true "cleanup function..."
-
-   ## The "Please feel free to press <enter> to return back to your normal prompt."
-   ## message is not necessary when manually started.
-   if [ ! "$manualrun" = "1" ]; then
-      ## Not manually started.
-
-      local output_status_exit_code
-      output_status_exit_code="0"
-      $output ${output_opts[@]} --identifier "$IDENTIFIER" --status --messagecli || { output_status_exit_code="$?" ; true; };
-
-      if [ "$output_status_exit_code" = "0" ]; then
-         ## We have messages to show.
-         ## Add press enter to return back to your normal prompt message below.
-         local MSG="<p>Please feel free to press enter to return back to your normal prompt.</p>"
-         $output ${output_opts[@]} --messagecli --typecli "info" --titlecli "$TITLE" --message "$MSG"
-      elif [ "$output_status_exit_code" = "1" ]; then
-         true "<p>No messages for --messagecli in the queue. Not adding press enter to return back to your normal prompt message below.</p>"
-      else
-         local MSG="<p><b>$output returned $output_status_exit_code.</b> Please report this bug!</p>"
-         $output ${output_opts[@]} --messagecli --typecli "error" --titlecli "$TITLE" --message "$MSG"
-         $output ${output_opts[@]} --messagex --typex "error" --titlex "$TITLE" --message "$MSG"
-      fi
-   fi
 
    ## default exit code
    if [ "$EXIT_CODE" = "" ]; then
