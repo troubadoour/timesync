@@ -53,7 +53,9 @@ ex_funct() {
          fi
       fi
 
-      if [ ! "$SIGNAL_TYPE" = "SIGUSR2" ]; then
+      if [ "$SIGNAL_TYPE" = "SIGUSR2" ]; then
+         true "User most likely pressed cancel button. No need to send progress 100 to close progress bar."
+      else
          $output ${output_opts[@]} --progressbaridx "$progressbaridx" --progressx "100"
       fi
       $output ${output_opts[@]} --messagex --done
