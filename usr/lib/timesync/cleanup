@@ -53,10 +53,18 @@ ex_funct() {
          fi
       fi
 
+      local progress_bar_open
+      progress_bar_open="0"
+      $output ${output_opts[@]} --identifier "$IDENTIFIER" --status --progressbaridx "$progressbaridx" --progressbarxrunning || { progress_bar_open="$?" ; true; };
+
       if [ "$SIGNAL_TYPE" = "SIGUSR2" ]; then
          true "User most likely pressed cancel button. No need to send progress 100 to close progress bar."
       else
-         $output ${output_opts[@]} --progressbaridx "$progressbaridx" --progressx "100"
+         if [ "$progress_bar_open" = "0" ]; then
+            $output ${output_opts[@]} --progressbaridx "$progressbaridx" --progressx "100"
+         else
+            true "No progress bar open. No need to send progress 100 to close progress bar."
+         fi
       fi
       $output ${output_opts[@]} --messagex --done
       $output ${output_opts[@]} --messagecli --done
