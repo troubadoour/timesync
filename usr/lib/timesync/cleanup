@@ -12,6 +12,8 @@
 ex_funct() {
    trap "error_handler" ERR
 
+   echo "$SCRIPTNAME: signal $SIGNAL_TYPE received. Cleaning up... Exiting..."
+
    ## Deactivate traps, so when pressing ctrl + c several times this won't
    ## create an endless loop.
    trap - SIGTERM
@@ -68,6 +70,9 @@ ex_funct() {
       fi
       $output ${output_opts[@]} --messagex --done
       $output ${output_opts[@]} --messagecli --done
+   else
+      local MSG="$SCRIPTNAME aborted! (SIGNAL_TYPE: $SIGNAL_TYPE)"
+      echo "$MSG"
    fi
 
    if [ "$EXIT_CODE" = "" ]; then
