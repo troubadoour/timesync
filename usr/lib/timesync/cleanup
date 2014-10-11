@@ -117,7 +117,7 @@ trap "trap_sigusr2" SIGUSR2 ## msgcollector, zenity cancel button
 cleanup() {
    trap "error_handler" ERR
 
-   true "cleanup function..."
+   true "$FUNCNAME..."
 
    ## default exit code
    if [ "$EXIT_CODE" = "" ]; then
