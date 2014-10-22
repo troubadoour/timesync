@@ -46,13 +46,13 @@ tail -f /var/log/sdwdate.log"
          fi
 
          if [ "$VERBOSE" = "1" ]; then
-            local MSG='Running "sudo /etc/init.d/sdwdate restartnd"...'
+            local MSG='Running "sudo /etc/init.d/sdwdate restartndclean"...'
             $output ${output_opts[@]} --messagecli --typecli "info" --titlecli "$TITLE" --message "$MSG"
-            sudo /etc/init.d/sdwdate restartnd &
+            sudo /etc/init.d/sdwdate restartndclean &
          else
-            local MSG='Running "sudo service sdwdate restartnd"...'
+            local MSG='Running "sudo service sdwdate restartndclean"...'
             $output ${output_opts[@]} --messagecli --typecli "info" --titlecli "$TITLE" --message "$MSG"
-            sudo service sdwdate restartnd
+            sudo service sdwdate restartndclean
          fi
          local MSG="Done, restarted sdwdate, which should now be running in background..."
          $output ${output_opts[@]} --messagecli --typecli "info" --titlecli "$TITLE" --message "$MSG"
