@@ -47,10 +47,10 @@ preparation() {
 
    output="/usr/lib/msgcollector/msgcollector"
 
-   ## TODO
+   ## When run by sdwdate, --whoami has already been passed.
+   ## When run by running timesync, auto detect own user name.
    if [ "$who_ami" = "" ]; then
-      #who_ami="$(whoami)"
-      who_ami="user"
+      who_ami="$(whoami)" || who_ami="user"
    fi
 
    output_opt_1="--icon $ICON"
