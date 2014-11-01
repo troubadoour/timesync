@@ -8,16 +8,11 @@
 
 ## Bash Fragment.
 
-## TODO
+## Notification user.
+## The user which receives notifications by sdwdate plugin timesync.
+## If that user does not exist, the timesync plugin will do nothing when being
+## run by sdwdate.
 who_ami="user"
-
-## TODO
-if [ "$who_ami" = "" ]; then
-   echo "$BASH_SOURCE: Notification user variable who_ami is empty. Not loading timesync plugin."
-   return 0
-else
-   true "$BASH_SOURCE: Notification user variable who_ami set to: $who_ami"
-fi
 
 ## See 30_sdwdate_default and /usr/lib/timesync/timesync_pre for a comment on the SDW_MODE variable.
 DISPATCH_PRE='/usr/lib/timesync/timesync_pre --autostart --identifier "timesync" --progressbaridx "$ID" --mode "$SDW_MODE" --whoami "$who_ami"'

@@ -53,6 +53,14 @@ preparation() {
       who_ami="$(whoami)" || who_ami="user"
    fi
 
+   local id_exit_code="0"
+   id -u "$who_ami" 2>/dev/null || { id_exit_code="$?" ; true; };
+
+   if [ ! "$id_exit_code" = "0" ]; then
+      echo "$BASH_SOURCE $FUNCNAME: Notification user (variable who_ami) is set to $who_ami, but that user does not exist. Exiting."
+      exit 0
+   fi
+
    output_opt_1="--icon $ICON"
    output_opt_2="--parentpid $$"
    output_opt_3="--identifier $IDENTIFIER"

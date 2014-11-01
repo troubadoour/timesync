@@ -46,7 +46,7 @@ timesync_pre_main() {
    trap "error_handler" ERR
 
    parse_cmd "${1+"$@"}"
-   #preparation
+   preparation
 
    if [ "$MODE" = "startup" ]; then
       ## Use & to prevent blocking.
