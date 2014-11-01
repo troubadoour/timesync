@@ -8,17 +8,17 @@
 
 ## Bash Fragment.
 
-## See 30_sdwdate_default and /usr/lib/timesync/timesync_pre for a comment on the SDW_MODE variable.
-DISPATCH_PRE='/usr/lib/timesync/timesync_pre --autostart --identifier "timesync" --progressbaridx "$ID" --mode "$SDW_MODE"'
-
-DISPATCH_POST_ERROR='/usr/lib/timesync/timesync_post_error --identifier "timesync" --progressbaridx "$ID" "$error_message" & disown'
-
-DISPATCH_POST_SUCCESS='/usr/lib/timesync/timesync_post_success --autostart --identifier "timesync" --progressbaridx "$ID" --mode "$SDW_MODE"'
-
-DISPATCH_POST_FAILURE='/usr/lib/timesync/timesync_post_failure --autostart --identifier "timesync" --progressbaridx "$ID" --mode "$SDW_MODE"'
-
 ## TODO
 who_ami="user"
+
+## See 30_sdwdate_default and /usr/lib/timesync/timesync_pre for a comment on the SDW_MODE variable.
+DISPATCH_PRE='/usr/lib/timesync/timesync_pre --autostart --identifier "timesync" --progressbaridx "$ID" --mode "$SDW_MODE" --whoami "$who_ami"'
+
+DISPATCH_POST_ERROR='/usr/lib/timesync/timesync_post_error --identifier "timesync" --progressbaridx "$ID" --mode "$SDW_MODE" --whoami "$who_ami" "$error_message" & disown'
+
+DISPATCH_POST_SUCCESS='/usr/lib/timesync/timesync_post_success --autostart --identifier "timesync" --progressbaridx "$ID" --mode "$SDW_MODE" --whoami "$who_ami"'
+
+DISPATCH_POST_FAILURE='/usr/lib/timesync/timesync_post_failure --autostart --identifier "timesync" --progressbaridx "$ID" --mode "$SDW_MODE" --whoami "$who_ami"'
 
 SDWDATE_CURL_DISPATCH_PRE[SDWDATE_POOL_ONE]='/usr/lib/timesync/timesync_progress --identifier "timesync" --progressbaridx "$ID" --mode "$SDW_MODE" --whoami "$who_ami" --progressx 15'
 SDWDATE_CURL_DISPATCH_POST[SDWDATE_POOL_ONE]='/usr/lib/timesync/timesync_progress --identifier "timesync" --progressbaridx "$ID" --mode "$SDW_MODE" --whoami "$who_ami" --progressx 30'
