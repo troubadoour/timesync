@@ -85,7 +85,7 @@ timesync_pre_main() {
     <blockquote>tail -f /var/log/sdwdate.log</blockquote></p>
 
 <p>For better security and anonymity, please do not use the internet until timesync succeeded.</p>"
-      $output ${output_opts[@]} --progressbaridx "$progressbaridx" --progressbarx --titlex "$TITLE" --message "$MSG" --done
+      $output ${output_opts[@]} --progressbaridx "$progressbaridx" --parentpid "$$" --progressbarx --progressbartitlex "$TITLE" --message "$MSG" --done
 
       local MSG="<p>Running Secure Network Time Synchronization (sdwdate)...
 <br></br>This will happen in background and if internet connectivity is functional it will take approximately 60 seconds.</p>
@@ -95,7 +95,7 @@ timesync_pre_main() {
 
 <p>For better security and anonymity, please do not use the internet until timesync succeeded.</p>
 <p>Please feel free to press <enter> to return back to your normal prompt.</p>"
-      $output ${output_opts[@]} --waitmessagecli --typecli "info" --titlecli "$TITLE" --message "$MSG" --done
+      $output ${output_opts[@]} --waitmessagecli --typecli "info" --message "$MSG" --done
    else
       true "MODE: $MODE"
    fi

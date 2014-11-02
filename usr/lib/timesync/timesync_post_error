@@ -58,8 +58,8 @@ timesync_post_error() {
 
    local MSG="<p>$MSG</p>"
 
-   $output ${output_opts[@]} --messagex --typex "error" --titlex "$TITLE" --message "$MSG"
-   $output ${output_opts[@]} --messagecli --typecli "error" --titlecli "$TITLE" --message "$MSG"
+   $output ${output_opts[@]} --messagex --typex "error" --message "$MSG"
+   $output ${output_opts[@]} --messagecli --typecli "error" --message "$MSG"
 
    cleanup
 }

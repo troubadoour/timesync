@@ -50,7 +50,8 @@ timesync_main() {
    parse_cmd ${1+"$@"}
    preparation
 
-   $output ${output_opts[@]} --forget
+   ## TODO: Would delete .titlex.
+   #$output ${output_opts[@]} --forget
    ## Sleep to prevent a race condition.
    sleep 2 &
    wait "$!"
@@ -62,14 +63,14 @@ If you like to watch the log, open a terminal and run:
     tail -f /var/log/sdwdate.log
 
 For better security and anonymity, please do not use the internet until timesync succeeded."
-   $output ${output_opts[@]} --progressbaridx "$progressbaridx" --progressbarx --titlex "$TITLE" --message "$MSG" --done
+   $output ${output_opts[@]} --progressbaridx "$progressbaridx" --progressbarx --parentpid "$$" --progressbartitlex "$TITLE" --message "$MSG" --done
 
    if [ -d /usr/share/whonix ]; then
       local WHONIX_HOMEPAGE="https://www.whonix.org"
       local MSG="<p>Whonix is produced independently of, with no guarantee from, The Tor Project. Whonix is experimental software. \
 Do not rely on it for strong anonymity. <a href=$WHONIX_HOMEPAGE>$WHONIX_HOMEPAGE</a></p>"
-      $output ${output_opts[@]} --messagex --typex "info" --titlex "$TITLE" --message "$MSG"
-      $output ${output_opts[@]} --messagecli --typecli "info" --titlecli "$TITLE" --message "$MSG"
+      $output ${output_opts[@]} --messagex --typex "info" --message "$MSG"
+      $output ${output_opts[@]} --messagecli --typecli "info" --message "$MSG"
    fi
 
    if [ -d /usr/share/whonix ]; then

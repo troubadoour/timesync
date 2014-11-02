@@ -12,14 +12,14 @@ check_sdwdate_terminate_tail() {
    fi
 
    local MSG="<p>Stopping watching /var/log/sdwdate.log...</p>"
-   $output ${output_opts[@]} --messagecli --typecli "info" --titlecli "$TITLE" --message "$MSG"
+   $output ${output_opts[@]} --messagecli --typecli "info" --message "$MSG"
 
    ## || true is required when tail existed in meanwhile.
    ## (Console window closed.)
    kill -sigterm "$tail_pid" || true
 
    local MSG="<p>Stopped watching /var/log/sdwdate.log.</p>"
-   $output ${output_opts[@]} --messagecli --typecli "info" --titlecli "$TITLE" --message "$MSG"
+   $output ${output_opts[@]} --messagecli --typecli "info" --message "$MSG"
 }
 
 check_sdwdate_status() {
@@ -122,8 +122,8 @@ check_sdwdate() {
 <br></br>$SDWDATE_STATUS Please report this bug!</p>
 
 <p>$HELPTEXT</p>"
-      $output ${output_opts[@]} --messagex --typex "error" --titlex "$TITLE" --message "$MSG"
-      $output ${output_opts[@]} --messagecli --typecli "error" --titlecli "$TITLE" --message "$MSG"
+      $output ${output_opts[@]} --messagex --typex "error" --message "$MSG"
+      $output ${output_opts[@]} --messagecli --typecli "error" --message "$MSG"
       return 0
    fi
 
@@ -138,13 +138,13 @@ check_sdwdate() {
          local MSG="<p>Last run (on $SUCCESS_TIME) of Network Time Synchronization (timesync) was successful.</p>"
          if [ "$manualrun" = "1" ]; then
             ## When manually started, always use an active popup.
-            $output ${output_opts[@]} --messagex --typex "info" --titlex "$TITLE" --message "$MSG"
-            $output ${output_opts[@]} --messagecli --typecli "info" --titlecli "$TITLE" --message "$MSG"
+            $output ${output_opts[@]} --messagex --typex "info" --message "$MSG"
+            $output ${output_opts[@]} --messagecli --typecli "info" --message "$MSG"
             ## When manually started, ask for donation.
             local MSG="<p>Please donate:
 <br></br><a href=https://www.whonix.org/wiki/Donate>https://www.whonix.org/wiki/Donate</a></p>"
-            $output ${output_opts[@]} --messagex --typex "info" --titlex "$TITLE" --message "$MSG"
-            $output ${output_opts[@]} --messagecli --typecli "info" --titlecli "$TITLE" --message "$MSG"
+            $output ${output_opts[@]} --messagex --typex "info" --message "$MSG"
+            $output ${output_opts[@]} --messagecli --typecli "info" --message "$MSG"
          elif [ "$DAEMON" = "1" ]; then
             true "No success message in daemon mode."
          ## See timesync_pre for a comment on the (SDW_)MODE variable.
@@ -154,13 +154,13 @@ check_sdwdate() {
             true "No success message when in SDW_MODE daemon."
          elif [ "$AUTOSTARTED" = "1" ]; then
             ## Only use an passive popup when automatically started.
-            $output ${output_opts[@]} --passivepopupqueuex --typex "info" --titlex "$TITLE" --message "$MSG" --done
-            $output ${output_opts[@]} --messagecli --typecli "info" --titlecli "$TITLE" --message "$MSG"
+            $output ${output_opts[@]} --passivepopupqueuex --typex "info" --passivepopupqueuextitle "$TITLE" --message "$MSG" --done
+            $output ${output_opts[@]} --messagecli --typecli "info" --message "$MSG"
          else
             local MSG="<p>$MSG
 <br></br>Neither manualrun ($manualrun), nor DAEMON ($DAEMON), nor AUTOSTARTED ($AUTOSTARTED). Please report this bug!</p>"
-            $output ${output_opts[@]} --messagex --typex "error" --titlex "$TITLE" --message "$MSG"
-            $output ${output_opts[@]} --messagecli --typecli "error" --titlecli "$TITLE" --message "$MSG"
+            $output ${output_opts[@]} --messagex --typex "error" --message "$MSG"
+            $output ${output_opts[@]} --messagecli --typecli "error" --message "$MSG"
          fi
          return 0
       else
@@ -173,8 +173,8 @@ check_sdwdate() {
 <p>Either timesync has a bug or this is an attack. Better manually set your clock!!!</p>
 
 <p>$HELPTEXT</p>"
-         $output ${output_opts[@]} --messagex --typex "error" --titlex "$TITLE" --message "$MSG"
-         $output ${output_opts[@]} --messagecli --typecli "error" --titlecli "$TITLE" --message "$MSG"
+         $output ${output_opts[@]} --messagex --typex "error" --message "$MSG"
+         $output ${output_opts[@]} --messagecli --typecli "error" --message "$MSG"
          return 0
       fi
    fi
@@ -200,8 +200,8 @@ check_sdwdate() {
 <p>Test your internet connection.</p>
 <p>$HELPTEXT</p>"
          fi
-         $output ${output_opts[@]} --messagex --typex "error" --titlex "$TITLE" --message "$MSG"
-         $output ${output_opts[@]} --messagecli --typecli "error" --titlecli "$TITLE" --message "$MSG"
+         $output ${output_opts[@]} --messagex --typex "error" --message "$MSG"
+         $output ${output_opts[@]} --messagecli --typecli "error" --message "$MSG"
          return 0
       else
          check_sdwdate_terminate_tail
@@ -210,8 +210,8 @@ check_sdwdate() {
 <br></br>If your host clock is sane, please report a bug.</p>
 
 <p>$HELPTEXT</p>"
-         $output ${output_opts[@]} --messagex --typex "error" --titlex "$TITLE" --message "$MSG"
-         $output ${output_opts[@]} --messagecli --typecli "error" --titlecli "$TITLE" --message "$MSG"
+         $output ${output_opts[@]} --messagex --typex "error" --message "$MSG"
+         $output ${output_opts[@]} --messagecli --typecli "error" --message "$MSG"
          return 0
       fi
    fi
@@ -237,7 +237,7 @@ check_sdwdate() {
 <br></br>Please report this bug!</p>
 
 <p>$HELPTEXT</p>"
-   $output ${output_opts[@]} --messagex --typex "error" --titlex "$TITLE" --message "$MSG"
-   $output ${output_opts[@]} --messagecli --typecli "error" --titlecli "$TITLE" --message "$MSG"
+   $output ${output_opts[@]} --messagex --typex "error" --message "$MSG"
+   $output ${output_opts[@]} --messagecli --typecli "error" --message "$MSG"
    return 0
 }

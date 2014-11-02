@@ -22,16 +22,16 @@ check_bootclockrandomization() {
    if [ "$exit_code" = "0" ]; then
       local MSG="<p>bootclockrandomization success.</p>"
       if [ "$verbose" = "1" ]; then
-         $output ${output_opts[@]} --messagex --typex "info" --titlex "$TITLE" --message "$MSG"
-         $output ${output_opts[@]} --messagecli --typecli "info" --titlecli "$TITLE" --message "$MSG"
+         $output ${output_opts[@]} --messagex --typex "info" --message "$MSG"
+         $output ${output_opts[@]} --messagecli --typecli "info" --message "$MSG"
       fi
    else
       local MSG
       MSG="<p><b>bootclockrandomization failed.</b> Please report this bug!</p>
 <p>Last 6 lines of /var/log/bootclockrandomization.log:
 <blockquote>$(tail -n 6 /var/log/bootclockrandomization.log)</blockquote></p>" || true
-      $output ${output_opts[@]} --messagex --typex "error" --titlex "$TITLE" --message "$MSG"
-      $output ${output_opts[@]} --messagecli --typecli "error" --titlecli "$TITLE" --message "$MSG"
+      $output ${output_opts[@]} --messagex --typex "error" --message "$MSG"
+      $output ${output_opts[@]} --messagecli --typecli "error" --message "$MSG"
    fi
 }
 
@@ -50,8 +50,8 @@ check_timesanitycheck() {
          local MSG="<p>It may have happened, that sdwdate was run before timesanitycheck.
 <br></br>Let us wait a few seconds and try checking timesanitycheck status again.</p>"
          if [ "$verbose" = "1" ]; then
-            $output ${output_opts[@]} --messagex --typex "info" --titlex "$TITLE" --message "$MSG"
-            $output ${output_opts[@]} --messagecli --typecli "info" --titlecli "$TITLE" --message "$MSG"
+            $output ${output_opts[@]} --messagex --typex "info" --message "$MSG"
+            $output ${output_opts[@]} --messagecli --typecli "info" --message "$MSG"
          fi
          sleep "10" &
          lastpid="$!"
@@ -66,8 +66,8 @@ check_timesanitycheck() {
    if [ "$exit_code" = "0" ]; then
       local MSG="<p>timesanitycheck success.</p>"
       if [ "$verbose" = "1" ]; then
-         $output ${output_opts[@]} --messagex --typex "info" --titlex "$TITLE" --message "$MSG"
-         $output ${output_opts[@]} --messagecli --typecli "info" --titlecli "$TITLE" --message "$MSG"
+         $output ${output_opts[@]} --messagex --typex "info" --message "$MSG"
+         $output ${output_opts[@]} --messagecli --typecli "info" --message "$MSG"
       fi
    else
       local MSG="<p><b>Time Sanity Check failed before running Network Time Synchronization (timesync)!!!</b> (code: $exit_code)</p>
@@ -76,7 +76,7 @@ check_timesanitycheck() {
 
 Is your host clock slow or fast? If so, please power off, fix your host clock and restart.
 <br></br>If your host clock is sane, please report a bug.</p>"
-      $output ${output_opts[@]} --messagex --typex "error" --titlex "$TITLE" --message "$MSG"
-      $output ${output_opts[@]} --messagecli --typecli "error" --titlecli "$TITLE" --message "$MSG"
+      $output ${output_opts[@]} --messagex --typex "error" --message "$MSG"
+      $output ${output_opts[@]} --messagecli --typecli "error" --message "$MSG"
    fi
 }

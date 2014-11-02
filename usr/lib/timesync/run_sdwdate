@@ -23,22 +23,22 @@ because the /etc/init.d/sdwdate init should have already started sdwdate (unless
 
 <p>To undo this, type in terminal:
 <blockquote>sudo chmod +x /etc/init.d/sdwdate</blockquote></p>'
-         $output ${output_opts[@]} --messagex --typex "error" --titlex "$TITLE" --message "$MSG"
-         $output ${output_opts[@]} --messagecli --typecli "error" --titlecli "$TITLE" --message "$MSG"
+         $output ${output_opts[@]} --messagex --typex "error" --message "$MSG"
+         $output ${output_opts[@]} --messagecli --typecli "error" --message "$MSG"
          return 0
       else
          if [ ! -f "/var/log/sdwdate.log" ]; then
             local MSG="/var/log/sdwdate.log does not exist yet. Feel free to manually watch sdwdate's log, for example by running:
 tail -f /var/log/sdwdate.log"
-            $output ${output_opts[@]} --messagecli --typecli "info" --titlecli "$TITLE" --message "$MSG"
+            $output ${output_opts[@]} --messagecli --typecli "info" --message "$MSG"
          else
             local MSG="Starting to watch /var/log/sdwdate.log..."
-            $output ${output_opts[@]} --messagecli --typecli "info" --titlecli "$TITLE" --message "$MSG"
+            $output ${output_opts[@]} --messagecli --typecli "info" --message "$MSG"
 
             tail -f -n 0 "/var/log/sdwdate.log" &
             tail_pid="$!"
             local MSG="Watching /var/log/sdwdate.log..."
-            $output ${output_opts[@]} --messagecli --typecli "info" --titlecli "$TITLE" --message "$MSG"
+            $output ${output_opts[@]} --messagecli --typecli "info" --message "$MSG"
 
             sleep 2 &
             lastpid="$!"
@@ -47,15 +47,15 @@ tail -f /var/log/sdwdate.log"
 
          if [ "$VERBOSE" = "1" ]; then
             local MSG='Running "sudo /etc/init.d/sdwdate restartndclean"...'
-            $output ${output_opts[@]} --messagecli --typecli "info" --titlecli "$TITLE" --message "$MSG"
+            $output ${output_opts[@]} --messagecli --typecli "info" --message "$MSG"
             sudo /etc/init.d/sdwdate restartndclean &
          else
             local MSG='Running "sudo service sdwdate restartndclean"...'
-            $output ${output_opts[@]} --messagecli --typecli "info" --titlecli "$TITLE" --message "$MSG"
+            $output ${output_opts[@]} --messagecli --typecli "info" --message "$MSG"
             sudo service sdwdate restartndclean
          fi
          local MSG="Done, restarted sdwdate, which should now be running in background..."
-         $output ${output_opts[@]} --messagecli --typecli "info" --titlecli "$TITLE" --message "$MSG"
+         $output ${output_opts[@]} --messagecli --typecli "info" --message "$MSG"
       fi
    fi
 
