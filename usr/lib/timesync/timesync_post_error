@@ -57,7 +57,8 @@ timesync_post_error() {
       MSG="$FUNCNAME: empty error message. Please report this bug!"
    fi
 
-   local MSG="<p>$MSG</p>"
+   local MSG="<p>$SCRIPTNAME has been run with the following error text:</p>
+<p>$MSG</p>"
 
    $output ${output_opts[@]} --messagex --typex "error" --message "$MSG"
    $output ${output_opts[@]} --messagecli --typecli "error" --message "$MSG"
