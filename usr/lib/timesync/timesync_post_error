@@ -45,13 +45,14 @@ done
 timesync_post_error() {
    trap "error_handler" ERR
 
+   ## sets: positional_parameters
    parse_cmd ${1+"$@"}
    preparation
 
    ## no $output --forget
 
    local MSG
-   MSG="$@"
+   MSG="$positional_parameters"
    if [ "$MSG" = "" ]; then
       MSG="$FUNCNAME: empty error message. Please report this bug!"
    fi

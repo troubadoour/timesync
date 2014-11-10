@@ -57,4 +57,5 @@ parse_cmd() {
 
    ## If there are input files (for example) that follow the options, they
    ## will remain in the "$@" positional parameters.
+   positional_parameters="$@"
 }
