@@ -1,0 +1,549 @@
+commit 2230f4e198b0289f6afcb377f5df84e01aab1213
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Wed Feb 4 00:40:55 2015 +0000
+
+    updated makefile generic to version 1.3
+
+commit 4e9da95a5f86d1822b2806ef854489d3a7bc3d13
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Tue Feb 3 23:58:56 2015 +0000
+
+    Added creation of upstream changelog to debian/rules
+
+commit 58f1f759aeb366f973d1dd52fc13e2e647a50adf
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Wed Jan 7 19:34:57 2015 +0000
+
+    bumped compat from 8 to 9
+
+commit 051917a93e12b5cbd4b305209d73f542a8e507a9
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Dec 5 19:01:21 2014 +0000
+
+    updated generic makefile
+
+commit 9d1fec3d0cb3e1837f7b51a7c5a380bd27778656
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Mon Nov 10 14:21:17 2014 +0000
+
+    improved error handler
+
+commit 3bc3fa2096001e2c4b7efc2460043dc33f86c06b
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Mon Nov 10 14:07:00 2014 +0000
+
+    fix
+
+commit 68202338d3b8b3d7ca909e9c599bb1b7a382af1a
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Mon Nov 10 13:27:31 2014 +0000
+
+    fix
+
+commit 1d2ae74121b8e6418208ac6a7e6d935fceb5d733
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun Nov 2 08:12:41 2014 +0000
+
+    refactoring, fewer leftover files in /var/run/msgcollector
+
+commit a005df4f01b43dbc1bb3b1fdb4e21b6a54cae16d
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun Nov 2 06:23:14 2014 +0000
+
+    output
+
+commit f17d25685870d379ed48bdf22bf07be33650c108
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Nov 1 19:14:18 2014 +0000
+
+    added hopefully Debian policy conform support for sending notifications by timesync when being run as sdwdate plugin to other user accounts than user "user"
+
+commit 18aae5ec371e6f9143ea4855b5e17ffd902cd856
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Nov 1 19:01:02 2014 +0000
+
+    TODO
+
+commit f4df5f5fcd8d17b50066599e52bd708175c55c23
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Nov 1 14:42:34 2014 +0000
+
+    minor
+
+commit 0c5ed515e69084f9507ac19aada470f47fde5352
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Nov 1 14:40:12 2014 +0000
+
+    fix
+
+commit 3d8be488e9d5c07b1b6e3615c36854dbdf23e3c3
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Nov 1 14:31:57 2014 +0000
+
+    refactoring
+
+commit 35ee0d5246086331a64a4d17b96da2f457d01fc5
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Tue Oct 28 22:35:31 2014 +0000
+
+    makefile: refactoring, avoid using IFS
+
+commit 2da5d4629593e3a40010b8e883d12601ae3d0873
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Oct 25 01:58:54 2014 +0000
+
+    makefile:
+    - make debdist; make undebdist
+    - cleanup
+    - refactoring
+
+commit 2a44817f1475c477ff16cb7b02633116e6867b73
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Thu Oct 23 22:43:05 2014 +0000
+
+    makefile:
+    - new target "make undist", which deletes the upstream tarball
+    - $DISTDIR variable for make (un)dist, which defaults to ".." and can be used to create upstream tarballs in arbitrary locations
+    - refactoring, all function names and global variables now start with "make_" to make the script `source`ing friendly
+    - made `source`able
+
+commit c4e6fddf0c6fc62ad6ac1125035d127f805e1364
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Wed Oct 22 23:26:39 2014 +0000
+
+    when running timesync, always set clock using `date`, not `sclockadj`
+
+commit 555d5e9ce3b20ecf50a443e533513017743fe713
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Wed Oct 22 21:57:09 2014 +0000
+
+    output
+
+commit d7ec5db4bc10bc15a3c6bffcb43c95c81ce99f36
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Mon Oct 13 12:36:58 2014 +0000
+
+    readme
+
+commit 58a99e5d7a20c8675e7fcb641bf9074f811cbd2e
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Oct 11 21:51:55 2014 +0000
+
+    refactoring
+
+commit 5da9d1769985a4c9c5f34000f8b88801ce6c9872
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Oct 11 21:33:27 2014 +0000
+
+    output
+
+commit cffb179b4761bafec7da5897c6b01fb0d04f91f2
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Oct 10 18:30:01 2014 +0000
+
+    fix
+
+commit 20f22cad61d121aa6c8d0bd3afb7a39628306afe
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Oct 10 18:21:22 2014 +0000
+
+    refactoring
+
+commit f74b425e3be94d6a2b37b7ae20d10126b2d64e29
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Oct 10 17:58:44 2014 +0000
+
+    refactoring
+
+commit 71fbe46d18fd8e9e1b3ca374a4e1804a84ae2ebf
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Oct 10 17:56:13 2014 +0000
+
+    refactoring
+
+commit 00890104a423f4025e68405e3cd813b11ed1d2cc
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Oct 10 14:56:48 2014 +0000
+
+    fix
+
+commit 13e392ffca081be4e14f282ae704c1a6c9226e9d
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Wed Oct 8 15:54:33 2014 +0000
+
+    refactoring
+
+commit ad3684a793147b5a95d9aa69ee2512ebd5d8584c
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Wed Oct 8 15:43:03 2014 +0000
+
+    implemented MODE restartup
+
+commit 767fedd2326fcbea36c35b94cf16c8dcc28d8db5
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Wed Oct 8 15:22:02 2014 +0000
+
+    Revert "timesync_pre: don't show "please do not use the internet until timesync succeeded" on sdwdate restart (#264) https://github.com/Whonix/Whonix/issues/264"
+    This reverts commit b40adfe6f3d244396b31f56dec566d183acc4c37.
+    This is better implemented in sdwdate using SDW_MODE variable.
+
+commit b40adfe6f3d244396b31f56dec566d183acc4c37
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Wed Oct 8 15:10:35 2014 +0000
+
+    timesync_pre: don't show "please do not use the internet until timesync succeeded" on sdwdate restart (#264) https://github.com/Whonix/Whonix/issues/264
+
+commit b58fbe17aeca4fd4a0151e0464ac2f346f22072c
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Thu Sep 18 18:35:13 2014 +0000
+
+    comments
+
+commit 2a22ffe0412647bdff4881ab492f7b58fe5c8f46
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Thu Sep 18 16:37:58 2014 +0000
+
+    bumped version number
+
+commit 17bb4a8b9cfc3fb357626d4f7e0ea03f682efb3c
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Thu Sep 18 16:37:29 2014 +0000
+
+    fix, prevent duplicate progresstxt files; exit codes; refactoring; fix progress bar
+
+commit 867f39a5a44b1ef6013ef8350133dec3fc50b639
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Tue Sep 9 01:21:09 2014 +0000
+
+    bumped changelog version
+
+commit 309fc0f408709cfafdc19e12c32121cfa8ca52be
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Tue Sep 9 01:20:52 2014 +0000
+
+    sdwdate: Breaking change: pool variable names were renamed. SDWDATE_POOL_PAL, SDWDATE_POOL_NEUTRAL, are now called SDWDATE_POOL_ONE, SDWDATE_POOL_TWO, SDWDATE_POOL_THREE. If you were using custom pools, you should update your config according to the new variable names. As per https://github.com/Whonix/Whonix/issues/310.
+
+commit 3821a7987140f7c52566111ab58fe7678c036fbc
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Tue Aug 26 15:23:33 2014 +0000
+
+    fix output
+
+commit d701340b2c45b07124949c99d4ed3840cb3a4c0e
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Tue Aug 26 01:41:01 2014 +0000
+
+    refactoring; output
+
+commit 24a1429a9447b157d5650dccf8c964dc2a0fc881
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Tue Aug 26 01:31:31 2014 +0000
+
+    timesync: fix, clean up temporary files/directory
+
+commit 3ede73967e438f8f839f6addd158baa8e8a1b28f
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Tue Aug 19 18:52:44 2014 +0000
+
+    makefile: added new feature "make deb-chl-bumpup" - Bump upstream version number in debian/changelog.
+
+commit 267f29f37f1cd8c7579766e312d20031d850295f
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun Aug 17 20:54:27 2014 +0000
+
+    Updated debian/changelog.
+
+commit 3b0b5690e0feb74916427b9c54b54a85bae6f544
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun Aug 17 20:47:30 2014 +0000
+
+    Fixed changelog date.
+
+commit 79e76f4852e75b97278834905b46d34448c02f0b
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun Aug 17 18:03:32 2014 +0000
+
+    bump version number
+
+commit 05e792cd1a3bb11401cd4013693fdc8954e6d4aa
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Thu Aug 14 13:35:20 2014 +0000
+
+    Implemented make deb-icup: Combination of make deb-pkg, make deb-pkg-install and make deb-pkg-cleanup.
+
+commit 9e27b614e17f69c906b51b60ae9c8137e5772577
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun Jul 27 12:42:29 2014 +0000
+
+    packaging
+
+commit 527d1b18614880977b736130236d9ee0e30d7e7a
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun Jul 27 04:01:15 2014 +0000
+
+    packaging
+
+commit 3049186df6dacfc1140014a3f16e6a048131fe6d
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Jul 26 15:26:40 2014 +0000
+
+    packaging
+
+commit fb9a7a5276ce775940301053377015703d4bf42f
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Jul 26 15:16:07 2014 +0000
+
+    packaging: removed build dependency on git, since the .git folder won't be included in the upstream tarball.
+
+commit 2a57c88970480b22ee1bb46cd5861b120f0cc6a9
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Mon Jul 14 01:51:31 2014 +0000
+
+    quotes
+
+commit a6a0260a0e100b11d90dabb476255d9214d5148d
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Mon Jul 14 01:37:21 2014 +0000
+
+    fix warning
+
+commit ad1720e1e377587a9796e610de59ba8f9cf4fd5c
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Jul 12 17:31:20 2014 +0000
+
+    packaging
+
+commit 441864cfc1571404315f322efda1f80319df1322
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Jul 12 17:11:03 2014 +0000
+
+    packaging
+
+commit 4f668e522a40063cdb2b66726335c79d1f1c0c86
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Jul 12 15:34:20 2014 +0000
+
+    packaging
+
+commit 8bd649b47f1c59c0f28940b68d7d634a0f555fa9
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Thu Jul 10 17:41:29 2014 +0000
+
+    fix output
+
+commit 9b52483ac148eba487524e3821a7c1f76757b085
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Tue Jul 8 14:06:01 2014 +0000
+
+    fix, todo
+
+commit 8e15f865aab20e13f76ada66279630f65eed7368
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun Jul 6 13:31:21 2014 +0000
+
+    quotes
+
+commit 02ff10d6224c86c1d9bbeac3399f1e6914e6b505
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun Jul 6 13:26:28 2014 +0000
+
+    use $BASH_SOURCE instead of $0
+
+commit 51f6bf87d39bed24e3755bc9308178861e99fffb
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun Jul 6 11:31:51 2014 +0000
+
+    sanity tests
+
+commit 9c583182d6d85508d66d3c360a4f92d253ac8aef
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Jul 5 08:50:01 2014 +0000
+
+    html tag
+
+commit be94ffd276ad34528978b67d4604bcdbb6f7ee8e
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Jul 5 08:09:45 2014 +0000
+
+    Bumped debian revision number to avoid lintian warning "new-package-should-close-itp-bug" so we can use lintian --fail-on-warnings as sanity test.
+
+commit 0cfe423499a998639392613fd99e3bb42bf472b5
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Jul 5 07:07:56 2014 +0000
+
+    fix
+
+commit 3910c5aae7409f7b479220270caf1b13e5563910
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Jul 4 04:31:49 2014 +0000
+
+    merged generic-gui-message into msgcollector
+
+commit b0548d5bdb6b2318787bc1b14cfd0235ba82acfa
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Thu Jul 3 17:09:56 2014 +0000
+
+    added depends on generic-gui-message
+
+commit 5215c5a4fe8f9210134714811535f2da512332f7
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Thu Jul 3 16:37:05 2014 +0000
+
+    fix
+
+commit 098f9d23b35db5e6da6b8abf0e2b9b89c567c3c4
+Merge: 97ceffb 5bdbca3
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Thu Jul 3 16:10:50 2014 +0000
+
+    Merge remote-tracking branch 'troubadoour/master' and solved conflicts.
+
+commit 97ceffb2067c443bf72ad209761937f161a3f1dd
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Thu Jul 3 12:56:26 2014 +0000
+
+    fix html
+
+commit 523cb76b8b778fc5d6f5714115bbf4f3be922b85
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Thu Jul 3 12:01:56 2014 +0000
+
+    output: only ask for donations when manually run
+
+commit 5bdbca3aa2cc3749dd486d1a43c73f7439f02562
+Author: troubadoour <trobador@riseup.net>
+Date:   Thu Jul 3 08:35:56 2014 +0000
+
+    HTML tags
+
+commit 55cbfc2a244f2d2ae71256b36a8241a62b917486
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Mon Jun 30 14:45:57 2014 +0000
+
+    fix, todo
+
+commit ab04a7b82cab1fe1aa1be89e80b28f69bb780b32
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Jun 28 19:02:22 2014 +0000
+
+    fix, todo
+
+commit a337838b370fa2a7172f00faea83c715fa733fa3
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Jun 28 18:57:50 2014 +0000
+
+    output: added ">/dev/null 2>&1" to sudo service
+
+commit 9f78e97eb89ba222237c8ad5f68effa5e493906f
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Jun 28 18:46:53 2014 +0000
+
+    comment
+
+commit 594c05c694adcc8b0bc9db7d2dad8df586acb3d8
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Jun 27 08:32:40 2014 +0000
+
+    fix
+
+commit 713c89aa7b6995aacca8e55ce8ad6530a0413df7
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Thu Jun 26 20:42:37 2014 +0000
+
+    fix
+
+commit 8cf0a3f909151191ab01dea1bfc53f39975c4a82
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Thu Jun 26 20:24:40 2014 +0000
+
+    fix
+
+commit f612ba3c1a120365d2e4ba15fea295a96bef4c0d
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Tue Jun 24 21:59:38 2014 +0000
+
+    fix
+
+commit 6b5939e6dda92b8e34ddf31622085542494f9a7b
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Tue Jun 24 21:15:36 2014 +0000
+
+    fix
+
+commit a3c1c1bac3bcb8ef89b6128694bbf7a834f03d36
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Tue Jun 24 21:14:44 2014 +0000
+
+    fix
+
+commit efa0616bc84b4acc35d9c45a0a0f6f0595912286
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Tue Jun 24 14:49:58 2014 +0000
+
+    fix
+
+commit 5f354b8ad8021480cae9d71661ecb08307fccd2c
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Tue Jun 24 15:45:14 2014 +0000
+
+    added debian epoch; added dotglob
+
+commit c679f3e4d73e3f8ec340f6d37231e6ab510a34da
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Thu Jun 12 15:44:28 2014 +0000
+
+    temp fix
+
+commit 6bc829ab7b69dd2886bf478659e42ed59df2eb99
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Tue Jun 10 14:17:17 2014 +0000
+
+    added who_ami for msgcollector
+
+commit 8cf63b4ac0403932d2b6029bcd724f7b761f6ae4
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Tue Jun 3 18:27:38 2014 +0000
+
+    readme
+
+commit bbee7e41a862e56ecfb80951163634f50664b366
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun Jun 1 15:38:37 2014 +0000
+
+    readme
+
+commit 8267ce7827b63caa3cfe3d46f18aee3bfe76a9af
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat May 31 11:52:40 2014 +0000
+
+    donate
+
+commit 7e9023561d5de78ffe4fd4918151ac0ca1e7f42c
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat May 31 11:49:15 2014 +0000
+
+    removed Whonix specific text
+
+commit 275a28e7b76bccc4692171152f5186d0716e80bb
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat May 31 11:38:00 2014 +0000
+
+    packaging
+
+commit 71871d9bb5acdb8cf91261cafcf70d826ee0b374
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat May 31 11:37:34 2014 +0000
+
+    comment
+
+commit 44a50eac25052272646ebb2cf80bcc575e91cfb8
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Thu May 22 15:30:27 2014 +0000
+
+    packaging
+
+commit 1a3cac1fd51160e475fb0e0b4b7d6d763f7810bf
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Thu May 22 15:24:51 2014 +0000
+
+    initial import from https://github.com/Whonix/Whonix
