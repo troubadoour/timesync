@@ -23,9 +23,9 @@ DISPATCH_POST_SUCCESS='/usr/lib/timesync/timesync_post_success --autostart --ide
 
 DISPATCH_POST_FAILURE='/usr/lib/timesync/timesync_post_failure --autostart --identifier "timesync" --progressbaridx "$ID" --mode "$SDW_MODE" --whoami "$who_ami"'
 
-SDWDATE_CURL_DISPATCH_PRE[SDWDATE_POOL_ONE]='/usr/lib/timesync/timesync_progress --identifier "timesync" --progressbaridx "$ID" --mode "$SDW_MODE" --whoami "$who_ami" --progressx 15'
-SDWDATE_CURL_DISPATCH_POST[SDWDATE_POOL_ONE]='/usr/lib/timesync/timesync_progress --identifier "timesync" --progressbaridx "$ID" --mode "$SDW_MODE" --whoami "$who_ami" --progressx 30'
-SDWDATE_CURL_DISPATCH_PRE[SDWDATE_POOL_TWO]='/usr/lib/timesync/timesync_progress --identifier "timesync" --progressbaridx "$ID" --mode "$SDW_MODE" --whoami "$who_ami" --progressx 45'
-SDWDATE_CURL_DISPATCH_POST[SDWDATE_POOL_TWO]='/usr/lib/timesync/timesync_progress --identifier "timesync" --progressbaridx "$ID" --mode "$SDW_MODE" --whoami "$who_ami" --progressx 60'
-SDWDATE_CURL_DISPATCH_PRE[SDWDATE_POOL_THREE]='/usr/lib/timesync/timesync_progress --identifier "timesync" --progressbaridx "$ID" --mode "$SDW_MODE" --whoami "$who_ami" --progressx 65'
-SDWDATE_CURL_DISPATCH_POST[SDWDATE_POOL_THREE]='/usr/lib/timesync/timesync_progress --identifier "timesync" --progressbaridx "$ID" --mode "$SDW_MODE" --whoami "$who_ami" --progressx 80'
+SDWDATE_TIME_TOOL_DISPATCH_PRE[SDWDATE_POOL_ONE]='/usr/lib/timesync/timesync_progress --identifier "timesync" --progressbaridx "$ID" --mode "$SDW_MODE" --whoami "$who_ami" --progressx 15'
+SDWDATE_TIME_TOOL_DISPATCH_POST[SDWDATE_POOL_ONE]='/usr/lib/timesync/timesync_progress --identifier "timesync" --progressbaridx "$ID" --mode "$SDW_MODE" --whoami "$who_ami" --progressx 30'
+SDWDATE_TIME_TOOL_DISPATCH_PRE[SDWDATE_POOL_TWO]='/usr/lib/timesync/timesync_progress --identifier "timesync" --progressbaridx "$ID" --mode "$SDW_MODE" --whoami "$who_ami" --progressx 45'
+SDWDATE_TIME_TOOL_DISPATCH_POST[SDWDATE_POOL_TWO]='/usr/lib/timesync/timesync_progress --identifier "timesync" --progressbaridx "$ID" --mode "$SDW_MODE" --whoami "$who_ami" --progressx 60'
+SDWDATE_TIME_TOOL_DISPATCH_PRE[SDWDATE_POOL_THREE]='/usr/lib/timesync/timesync_progress --identifier "timesync" --progressbaridx "$ID" --mode "$SDW_MODE" --whoami "$who_ami" --progressx 65'
+SDWDATE_TIME_TOOL_DISPATCH_POST[SDWDATE_POOL_THREE]='/usr/lib/timesync/timesync_progress --identifier "timesync" --progressbaridx "$ID" --mode "$SDW_MODE" --whoami "$who_ami" --progressx 80'
