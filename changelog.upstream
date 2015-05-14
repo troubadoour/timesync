@@ -1,3 +1,15 @@
+commit 270a1f3fb397deda261e11e5d4c38e435bbb40d4
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Thu May 14 12:06:37 2015 +0000
+
+    compatibility with systemd - https://phabricator.whonix.org/T106
+
+commit cc3c710de4c79c5f98279ab52376ff953833d535
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Thu Apr 30 17:56:59 2015 +0000
+
+    bumped changelog version
+
 commit 8b93cf3b7224fe753692c751fca77a2e8f31495c
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Tue Apr 28 15:38:28 2015 +0000
