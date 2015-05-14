@@ -48,7 +48,7 @@ timesync_pre_main() {
    parse_cmd "${1+"$@"}"
    preparation
 
-   if [ "$MODE" = "startup" ]; then
+   if [ "$MODE" = "startup" ] || [ "$MODE" = "sighup" ]; then
       ## Use & to prevent blocking.
       /usr/lib/msgcollector/msgcollector --icon /usr/share/icons/anon-icon-pack/timesync.ico --identifier "$IDENTIFIER" --progressbaridx "$progressbaridx" --whoami "$who_ami" --progressx "$progressx" &
    else

@@ -56,15 +56,6 @@ timesync_main() {
    sleep 2 &
    wait "$!"
 
-   local MSG="Running Secure Network Time Synchronization (sdwdate)...
-This will happen in background and if internet connectivity is functional it will take approximately 60 seconds.
-
-If you like to watch the log, open a terminal and run:
-    tail -f /var/log/sdwdate.log
-
-For better security and anonymity, please do not use the internet until timesync succeeded."
-   $output ${output_opts[@]} --progressbaridx "$progressbaridx" --progressbarx --parentpid "$$" --progressbartitlex "$TITLE" --message "$MSG" --done
-
    if [ -d /usr/share/whonix ]; then
       local WHONIX_HOMEPAGE="https://www.whonix.org"
       local MSG="<p>Whonix is produced independently of, with no guarantee from, The Tor Project. Whonix is experimental software. \

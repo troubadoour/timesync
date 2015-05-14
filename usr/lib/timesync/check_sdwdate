@@ -88,18 +88,6 @@ check_sdwdate() {
       TIMESANITYCHECK_STATUS_WORD="Fail"
    fi
 
-   PROGRESS="$(( $PROGRESS + 1 ))"
-   ## sdwdate does not reports status (by dispatching the dispatchers) itself,
-   ## because we restarted sdwdate with "sudo service sdwdate restartnd". (The
-   ## "nd" in "restartnd" means "no dispatch". Therefore we let timsync move
-   ## the progress bar.
-   if [ "$PROGRESS" = "1" ]; then
-      ## Useful when use as plugin.
-      true "PROGRESS: $PROGRESS, not running $output --progressx for first iteration."
-   else
-      $output ${output_opts[@]} --progressbaridx "$progressbaridx" --progressx "$PROGRESS"
-   fi
-
    TIME_END="$(date +%s)"
    TIME_DIFF="$(( $TIME_END - $TIME_START ))"
 
@@ -152,6 +140,8 @@ check_sdwdate() {
             true "No success message when in SDW_MODE restartup."
          elif [ "$MODE" = "daemon" ]; then
             true "No success message when in SDW_MODE daemon."
+         elif [ "$MODE" = "sighup" ]; then
+            true "No success message when in SDW_MODE sighup."
          elif [ "$AUTOSTARTED" = "1" ]; then
             ## Only use an passive popup when automatically started.
             $output ${output_opts[@]} --passivepopupqueuex --typex "info" --passivepopupqueuextitle "$TITLE" --message "$MSG" --done
