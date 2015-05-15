@@ -45,9 +45,15 @@ tail -f /var/log/sdwdate.log"
             wait "$lastpid" || true
          fi
 
-         local MSG='Running "sudo service sdwdate reload"...'
-         $output ${output_opts[@]} --messagecli --typecli "info" --message "$MSG"
-         sudo service sdwdate reload
+         if sudo service sdwdate status >/dev/null 2>&1 ; then
+            local MSG='Running "sudo service sdwdate reload"...'
+            $output ${output_opts[@]} --messagecli --typecli "info" --message "$MSG"
+            sudo service sdwdate reload
+         else
+            local MSG='Running "sudo service sdwdate restart"...'
+            $output ${output_opts[@]} --messagecli --typecli "info" --message "$MSG"
+            sudo service sdwdate restart
+         fi
 
          local MSG="Done, restarted sdwdate, which should now be running in background..."
          $output ${output_opts[@]} --messagecli --typecli "info" --message "$MSG"
