@@ -1,3 +1,15 @@
+commit e1e88c84c07697825a4aea14ac1c723192a58075
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Mon May 18 12:25:34 2015 +0000
+
+    when timesync (sdwdate gui plugin) is installed, then the sdwdate.service needs an additional 'Requires = msgcollector.service' - https://phabricator.whonix.org/T106
+
+commit 3aea0b59e313d07fa74e25b616b2b804d96c3bee
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri May 15 20:17:57 2015 +0000
+
+    bumped changelog version
+
 commit 5108f047a581c7fee82e699d04b9fa75dbbd3a8f
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Fri May 15 20:17:40 2015 +0000
