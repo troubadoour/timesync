@@ -13,51 +13,39 @@ run_sdwdate() {
 
    if [ "$AUTOSTARTED" = "1" ]; then
       true "$SCRIPTNAME run_sdwdate: not restarting sdwdate in this case, \
-because the /etc/init.d/sdwdate init should have already started sdwdate (unless /etc/init.d/sdwdate has been set -x).."
+because the init system should have already started sdwdate (unless disabled)."
    else
       ## When manually run...
-      if [ ! -x "/etc/init.d/sdwdate" ]; then
-         local MSG='<p><b>/etc/init.d/sdwdate not executable.</b></p>
-
-<p>Most likely you removed the executable bit from /etc/init.d/sdwdate using "sudo chmod -x /etc/init.d/sdwdate</p>"
-
-<p>To undo this, type in terminal:
-<blockquote>sudo chmod +x /etc/init.d/sdwdate</blockquote></p>'
-         $output ${output_opts[@]} --messagex --typex "error" --message "$MSG"
-         $output ${output_opts[@]} --messagecli --typecli "error" --message "$MSG"
-         return 0
-      else
-         if [ ! -f "/var/log/sdwdate.log" ]; then
-            local MSG="/var/log/sdwdate.log does not exist yet. Feel free to manually watch sdwdate's log, for example by running:
+      if [ ! -f "/var/log/sdwdate.log" ]; then
+         local MSG="/var/log/sdwdate.log does not exist yet. Feel free to manually watch sdwdate's log, for example by running:
 tail -f /var/log/sdwdate.log"
-            $output ${output_opts[@]} --messagecli --typecli "info" --message "$MSG"
-         else
-            local MSG="Starting to watch /var/log/sdwdate.log..."
-            $output ${output_opts[@]} --messagecli --typecli "info" --message "$MSG"
-
-            tail -f -n 0 "/var/log/sdwdate.log" &
-            tail_pid="$!"
-            local MSG="Watching /var/log/sdwdate.log..."
-            $output ${output_opts[@]} --messagecli --typecli "info" --message "$MSG"
-
-            sleep 2 &
-            lastpid="$!"
-            wait "$lastpid" || true
-         fi
-
-         if sudo service sdwdate status >/dev/null 2>&1 ; then
-            local MSG='Running "sudo service sdwdate reload"...'
-            $output ${output_opts[@]} --messagecli --typecli "info" --message "$MSG"
-            sudo service sdwdate reload
-         else
-            local MSG='Running "sudo service sdwdate restart"...'
-            $output ${output_opts[@]} --messagecli --typecli "info" --message "$MSG"
-            sudo service sdwdate restart
-         fi
-
-         local MSG="Done, restarted sdwdate, which should now be running in background..."
          $output ${output_opts[@]} --messagecli --typecli "info" --message "$MSG"
+      else
+         local MSG="Starting to watch /var/log/sdwdate.log..."
+         $output ${output_opts[@]} --messagecli --typecli "info" --message "$MSG"
+
+         tail -f -n 0 "/var/log/sdwdate.log" &
+         tail_pid="$!"
+         local MSG="Watching /var/log/sdwdate.log..."
+         $output ${output_opts[@]} --messagecli --typecli "info" --message "$MSG"
+
+         sleep 2 &
+         lastpid="$!"
+         wait "$lastpid" || true
       fi
+
+      if sudo service sdwdate status >/dev/null 2>&1 ; then
+         local MSG='Running "sudo service sdwdate reload"...'
+         $output ${output_opts[@]} --messagecli --typecli "info" --message "$MSG"
+         sudo service sdwdate reload
+      else
+         local MSG='Running "sudo service sdwdate restart"...'
+         $output ${output_opts[@]} --messagecli --typecli "info" --message "$MSG"
+         sudo service sdwdate restart
+      fi
+
+      local MSG="Done, restarted sdwdate, which should now be running in background..."
+      $output ${output_opts[@]} --messagecli --typecli "info" --message "$MSG"
    fi
 
    PROGRESS="$(( $PROGRESS + 1 ))"
