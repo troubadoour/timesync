@@ -49,8 +49,10 @@ timesync_pre_main() {
    preparation
 
    if [ "$MODE" = "startup" ] || [ "$MODE" = "sighup" ]; then
-      ## Use & to prevent blocking.
-      /usr/lib/msgcollector/msgcollector --icon /usr/share/icons/anon-icon-pack/timesync.ico --identifier "$IDENTIFIER" --progressbaridx "$progressbaridx" --whoami "$who_ami" --progressx "$progressx" &
+      ## Use '&' to prevent blocking.
+      ## Use 'disown' so EOF is send faster when using command substitution.
+      ## https://lists.gnu.org/archive/html/help-bash/2015-05/msg00076.html
+      /usr/lib/msgcollector/msgcollector --icon /usr/share/icons/anon-icon-pack/timesync.ico --identifier "$IDENTIFIER" --progressbaridx "$progressbaridx" --whoami "$who_ami" --progressx "$progressx" & disown
    else
       true "MODE: $MODE"
    fi
