@@ -1,3 +1,27 @@
+commit f1a59bd1a1a4489a2b1011e9b97b7a39e72fda45
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat May 30 14:46:19 2015 +0000
+
+    fix
+
+commit 4a93323a6bbfe3a807d510447081d58864e99474
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat May 30 13:39:49 2015 +0000
+
+    fix
+
+commit 23f3a9a728dcf58f541efae52cd4972cba589775
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat May 30 13:12:50 2015 +0000
+
+    fix
+
+commit 08d7ab18f1bb8ad6e7c3cf15ab4bca3fee12176c
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat May 23 18:07:29 2015 +0000
+
+    bumped changelog version
+
 commit b506ea4186a50bb50ae9b198deefaf2c9a7ca5d8
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sat May 23 18:06:30 2015 +0000
