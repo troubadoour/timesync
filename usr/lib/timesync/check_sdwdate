@@ -106,7 +106,7 @@ check_sdwdate() {
       ## If there is no pid file or no process after we restarted sdwdate, it is a bug.
       check_sdwdate_terminate_tail
       local MSG="<p><b>Network Time Synchronization (timesync) failed!!!</b>
-<br></br>TIMESANITYCHECK_STATUS: $TIMESANITYCHECK_STATUS_WORD
+<br></br>TIMESANITYCHECK_STATUS: $TIMESANITYCHECK_STATUS_WORD (exit code: $TIMESANITYCHECK_STATUS)
 <br></br>$SDWDATE_STATUS Please report this bug!</p>
 
 <p>$HELPTEXT</p>"
@@ -156,7 +156,7 @@ check_sdwdate() {
       else
          ## Something went wrong.
          check_sdwdate_terminate_tail
-         local MSG="<p><b>The clock is not sane,</b>
+         local MSG="<p><b>The clock is not sane</b>, (timesanitycheck exit code: $TIMESANITYCHECK_STATUS)
 <br></br>although last run (on $SUCCESS_TIME) of Network Time Synchronization (timesync) was successful.
 <br></br>Please report this bug!</p>
 
