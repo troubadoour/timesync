@@ -72,16 +72,18 @@ class TimesyncTrayIcon(QtGui.QSystemTrayIcon):
 
         def run(self):
             while True:
-                if os.path.exists('/tmp/sdwdate/last_output'):
-                    f = open('/tmp/sdwdate/last_output', 'r')
+                file_name = '/tmp/sdwdate/last_output'
+                if os.path.exists(file_name):
+                    f = open(file_name, 'r')
                     output = f.read()
                     f.close()
+                    os.remove(file_name)
                     self.newStatus.emit(output)
                 time.sleep(0.5)
 
 
 def restart_sdwdate():
-    check_output(['sudo', 'systemctl', 'restart', 'sdwdate'])
+    call('sudo systemctl restart sdwdate', shell=True)
 
 def restart_fresh():
     pass

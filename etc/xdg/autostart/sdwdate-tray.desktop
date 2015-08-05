@@ -5,4 +5,4 @@
 [Desktop Entry]
 Type=Application
 Terminal=false
-Exec=/usr/bin/timesync
+Exec=/usr/bin/sdwdate-tray

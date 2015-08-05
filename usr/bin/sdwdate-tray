@@ -1,0 +1,5 @@
+#! /usr/bin/env python
+from swdwdate_tray import swdwdate_tray
+
+swdwdate_tray.main()
+
